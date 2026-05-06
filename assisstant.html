@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Assistant | Cyber Rakshak</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'sans-serif'] },
+          colors: {
+            neon: { 50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490',800:'#155e75',900:'#164e63',950:'#083344' },
+            cDark: { 50:'#e2e8f0',100:'#cbd5e1',200:'#94a3b8',300:'#64748b',400:'#475569',500:'#334155',600:'#1e293b',700:'#0f172a',800:'#0a0e1a',900:'#060a14',950:'#020408' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Outfit',sans-serif;background:#020408;color:#cbd5e1;height:100vh;height:100dvh;overflow:hidden;font-size:20px}
+
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:transparent}
+    ::-webkit-scrollbar-thumb{background:rgba(6,182,212,0.25);border-radius:3px}
+    ::-webkit-scrollbar-thumb:hover{background:rgba(6,182,212,0.5)}
+
+    .neon-border{border:1px solid rgba(6,182,212,0.15)}
+    .neon-bg{background:rgba(6,182,212,0.08)}
+    .cyber-grid{background-image:linear-gradient(rgba(6,182,212,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.015) 1px,transparent 1px);background-size:50px 50px}
+
+    .msg-in{animation:msgSlide 0.3s ease}
+    @keyframes msgSlide{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    .typing span{display:inline-block;width:10px;height:10px;border-radius:50%;background:#22d3ee;margin:0 4px;animation:bounce 1.4s infinite}
+    .typing span:nth-child(2){animation-delay:0.2s}
+    .typing span:nth-child(3){animation-delay:0.4s}
+    @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-10px)}}
+
+    .suggestion-btn{transition:all 0.2s ease}
+    .suggestion-btn:hover{background:rgba(6,182,212,0.12);border-color:rgba(6,182,212,0.3);transform:translateY(-2px)}
+
+    .glow-orb{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+    @keyframes floatOrb{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+
+    .pulse-dot{animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 4px rgba(6,182,212,0.5)}50%{opacity:0.4;box-shadow:none}}
+
+    /* Message content styling — BIG TEXT */
+    .msg-content p{margin-bottom:12px;line-height:1.85}
+    .msg-content p:last-child{margin-bottom:0}
+    .msg-content code{background:rgba(6,182,212,0.1);padding:3px 9px;border-radius:5px;font-size:18px;color:#22d3ee;font-family:monospace}
+    .msg-content pre{background:rgba(0,0,0,0.35);border:1px solid rgba(6,182,212,0.1);border-radius:10px;padding:18px;overflow-x:auto;margin:12px 0;font-size:18px;line-height:1.7;color:#a5f3fc;font-family:monospace}
+    .msg-content ul,.msg-content ol{padding-left:24px;margin:12px 0}
+    .msg-content li{margin-bottom:8px;line-height:1.75}
+    .msg-content strong{color:#fff}
+    .msg-content h1,.msg-content h2,.msg-content h3{color:#fff;font-weight:600;margin:16px 0 10px}
+    .msg-content h1{font-size:26px}
+    .msg-content h2{font-size:23px}
+    .msg-content h3{font-size:20px}
+    .msg-content a{color:#22d3ee;text-decoration:underline}
+
+    @keyframes chatSlideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Responsive tweaks */
+    @media(max-width:640px){
+      body{font-size:17px}
+      .msg-content code{font-size:15px}
+      .msg-content pre{font-size:15px;padding:14px}
+      .msg-content h1{font-size:22px}
+      .msg-content h2{font-size:20px}
+      .msg-content h3{font-size:18px}
+    }
+  </style>
+</head>
+<body class="cyber-grid">
+
+  <!-- Ambient Glow Orbs -->
+  <div class="glow-orb" style="width:350px;height:350px;background:rgba(6,182,212,0.04);top:-60px;left:-60px;animation:floatOrb 8s ease-in-out infinite"></div>
+  <div class="glow-orb" style="width:300px;height:300px;background:rgba(8,145,178,0.04);bottom:-40px;right:-40px;animation:floatOrb 10s ease-in-out infinite reverse"></div>
+
+  <div class="flex flex-col h-screen relative z-10">
+
+    <!-- ═══════ TOP BAR ═══════ -->
+    <header class="flex-shrink-0 border-b border-cDark-700/50 bg-cDark-950/80 backdrop-blur-xl">
+      <div class="flex items-center justify-between px-4 sm:px-6 h-16 sm:h-18">
+        <div class="flex items-center gap-3">
+          <a href="dashboard.html" class="p-2 rounded-lg hover:bg-cDark-700/50 transition-colors" title="Back to Dashboard">
+            <i data-lucide="arrow-left" class="w-5 h-5 sm:w-6 sm:h-6 text-cDark-300"></i>
+          </a>
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl neon-bg neon-border flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-5 h-5 sm:w-6 sm:h-6 text-neon-400"></i>
+          </div>
+          <div>
+            <h1 class="text-lg sm:text-xl font-bold text-white tracking-wide">CYBER RAKSHAK</h1>
+            <p class="text-xs sm:text-sm text-neon-500/60 tracking-[0.15em] uppercase">AI Assistant</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full neon-bg neon-border">
+            <div class="w-2.5 h-2.5 rounded-full bg-neon-400 pulse-dot"></div>
+            <span class="text-base font-medium text-neon-400">Online</span>
+          </div>
+          <button onclick="clearChat()" class="p-2.5 rounded-lg hover:bg-cDark-700/50 transition-colors" title="Clear chat">
+            <i data-lucide="trash-2" class="w-5 h-5 sm:w-6 sm:h-6 text-cDark-400"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════ CHAT AREA ═══════ -->
+    <div class="flex-1 overflow-y-auto" id="chatArea">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 py-6 sm:py-8" id="chatMessages">
+
+        <!-- Welcome Hero -->
+        <div class="msg-in text-center mb-8 sm:mb-10">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl neon-bg neon-border flex items-center justify-center mx-auto mb-5" style="box-shadow:0 0 30px rgba(6,182,212,0.15)">
+            <i data-lucide="bot" class="w-10 h-10 sm:w-12 sm:h-12 text-neon-400"></i>
+          </div>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">CyberSecurity AI Tutor</h2>
+          <p class="text-xl sm:text-2xl md:text-[26px] text-cDark-200 max-w-2xl mx-auto leading-relaxed">Your personal assistant for learning offensive & defensive security. Ask anything about tools, techniques, and concepts.</p>
+        </div>
+
+        <!-- Suggestion Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8" id="suggestions">
+          <button onclick="askSuggestion(this)" class="suggestion-btn text-left px-5 py-4 sm:px-6 sm:py-5 rounded-xl bg-cDark-800/40 neon-border border border-transparent">
+            <div class="flex items-center gap-2.5 mb-2">
+              <i data-lucide="crosshair" class="w-5 h-5 sm:w-6 sm:h-6 text-red-400"></i>
+              <span class="text-base sm:text-lg font-semibold text-white">Ethical Hacking</span>
+            </div>
+            <p class="text-lg sm:text-xl text-cDark-300 leading-relaxed">How to perform a basic Nmap scan and interpret results?</p>
+          </button>
+          <button onclick="askSuggestion(this)" class="suggestion-btn text-left px-5 py-4 sm:px-6 sm:py-5 rounded-xl bg-cDark-800/40 neon-border border border-transparent">
+            <div class="flex items-center gap-2.5 mb-2">
+              <i data-lucide="globe" class="w-5 h-5 sm:w-6 sm:h-6 text-neon-400"></i>
+              <span class="text-base sm:text-lg font-semibold text-white">Web Security</span>
+            </div>
+            <p class="text-lg sm:text-xl text-cDark-300 leading-relaxed">Explain SQL injection types with examples</p>
+          </button>
+          <button onclick="askSuggestion(this)" class="suggestion-btn text-left px-5 py-4 sm:px-6 sm:py-5 rounded-xl bg-cDark-800/40 neon-border border border-transparent">
+            <div class="flex items-center gap-2.5 mb-2">
+              <i data-lucide="network" class="w-5 h-5 sm:w-6 sm:h-6 text-blue-400"></i>
+              <span class="text-base sm:text-lg font-semibold text-white">Network Security</span>
+            </div>
+            <p class="text-lg sm:text-xl text-cDark-300 leading-relaxed">Difference between IDS and IPS with examples</p>
+          </button>
+          <button onclick="askSuggestion(this)" class="suggestion-btn text-left px-5 py-4 sm:px-6 sm:py-5 rounded-xl bg-cDark-800/40 neon-border border border-transparent">
+            <div class="flex items-center gap-2.5 mb-2">
+              <i data-lucide="search" class="w-5 h-5 sm:w-6 sm:h-6 text-purple-400"></i>
+              <span class="text-base sm:text-lg font-semibold text-white">Digital Forensics</span>
+            </div>
+            <p class="text-lg sm:text-xl text-cDark-300 leading-relaxed">Steps to perform memory forensics with Volatility</p>
+          </button>
+        </div>
+
+        <div class="h-px bg-gradient-to-r from-transparent via-cDark-700/50 to-transparent mb-8"></div>
+
+      </div>
+    </div>
+
+    <!-- ═══════ INPUT BAR ═══════ -->
+    <div class="flex-shrink-0 border-t border-cDark-700/50 bg-cDark-950/80 backdrop-blur-xl px-4 sm:px-6 py-4 sm:py-5">
+      <form onsubmit="sendMessage(event)" class="max-w-3xl mx-auto flex gap-3">
+        <input type="text" id="chatInput" placeholder="Ask about cybersecurity, tools, techniques..."
+          class="flex-1 px-5 py-3.5 sm:px-6 sm:py-4 rounded-xl border border-cDark-600 bg-cDark-800/60 text-white text-lg sm:text-xl placeholder-cDark-500 focus:outline-none focus:border-neon-500/40 focus:ring-1 focus:ring-neon-500/10 transition-all"
+          autocomplete="off">
+        <button type="submit" id="sendBtn" class="px-5 py-3.5 sm:px-7 sm:py-4 rounded-xl bg-neon-500 hover:bg-neon-600 text-cDark-950 font-semibold text-lg sm:text-xl transition-all flex items-center gap-2 flex-shrink-0" style="box-shadow:0 0 12px rgba(6,182,212,0.15)">
+          <i data-lucide="send" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+          <span class="hidden sm:inline">Send</span>
+        </button>
+      </form>
+      <p class="text-base sm:text-lg text-cDark-500 text-center mt-2.5">Powered by Cyber Rakshak • For educational purposes only</p>
+    </div>
+
+  </div>
+
+<script>
+var API_KEY = "sk-Q9w7AoGKg6afuoK4EP-chUCb5Piu-HLlIuvgQzbDrcYA2iFzaOu6_AG9gvHwP5NGz5ys57nLRmFxvGFuHz9_kLZo";
+var API_URL = "https://api.routeway.ai/v1/chat/completions";
+var MODEL = "llama-3.3-70b-instruct:free";
+
+var chatHistory = [];
+var isTyping = false;
+
+var SYSTEM_PROMPT = `You are "Cyber Rakshak AI", a cybersecurity tutor assistant for students enrolled in a professional internship program.
+
+Your personality:
+- Expert in offensive security (ethical hacking, pentesting, malware analysis)
+- Expert in defensive security (SOC, forensics, incident response, cloud security)
+- Patient teacher who explains complex concepts simply
+- Always includes practical examples when possible
+- Mentions real tools (Nmap, Burp Suite, Wireshark, Metasploit, Volatility, etc.)
+
+Rules:
+- Only answer cybersecurity and related tech topics
+- If asked about illegal activities, refuse politely and redirect to ethical alternatives
+- Format responses with clear structure — use headings, bullet points, code blocks when showing commands
+- Keep responses concise but thorough — students are learning, not reading a textbook
+- When showing terminal commands, wrap them in code blocks
+- Add relevant warnings when discussing sensitive topics
+- If unsure about something, say so honestly
+
+Example command format:
+\`\`\`bash
+nmap -sV -sC -O target_ip
+\`\`\`
+
+You help with: penetration testing, network security, web security, digital forensics, SOC operations, malware analysis, cloud security, cryptography, tool usage, report writing, and career guidance in cybersecurity.`;
+
+
+function askSuggestion(btn) {
+  var text = btn.querySelector("p").textContent;
+  document.getElementById("chatInput").value = text;
+  sendMessage(new Event("submit"));
+}
+
+function sendMessage(e) {
+  e.preventDefault();
+  var input = document.getElementById("chatInput");
+  var text = input.value.trim();
+  if (!text || isTyping) return;
+
+  var sug = document.getElementById("suggestions");
+  if (sug) sug.style.display = "none";
+
+  appendMessage(text, true);
+  input.value = "";
+  chatHistory.push({ role: "user", content: text });
+
+  showTyping();
+  isTyping = true;
+  document.getElementById("sendBtn").disabled = true;
+
+  callAI(text);
+}
+
+
+function callAI(userText) {
+  // Build messages array in OpenAI format: system + conversation history
+  var messages = [
+    { role: "system", content: SYSTEM_PROMPT }
+  ];
+
+  // Add conversation history
+  for (var i = 0; i < chatHistory.length; i++) {
+    messages.push({
+      role: chatHistory[i].role,
+      content: chatHistory[i].content
+    });
+  }
+
+  var body = {
+    model: MODEL,
+    messages: messages,
+    temperature: 0.7,
+    top_p: 0.9,
+    max_tokens: 2048
+  };
+
+  fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + API_KEY
+    },
+    body: JSON.stringify(body)
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(data) {
+    hideTyping();
+    isTyping = false;
+    document.getElementById("sendBtn").disabled = false;
+
+    if (data.error) {
+      var errMsg = data.error.message || data.error.type || "Unknown error";
+      appendMessage("⚠️ API Error: " + errMsg + "\n\nMake sure your RoutewayAI API key is correct and you have enough credits.", false);
+      chatHistory.pop();
+      return;
+    }
+
+    var reply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+
+    if (!reply) {
+      appendMessage("Sorry, I couldn't generate a response. Please try again.", false);
+      chatHistory.pop();
+      return;
+    }
+
+    appendMessage(reply, false);
+    chatHistory.push({ role: "assistant", content: reply });
+  })
+  .catch(function(err) {
+    hideTyping();
+    isTyping = false;
+    document.getElementById("sendBtn").disabled = false;
+    appendMessage("⚠️ Network error. Check your internet connection and try again.", false);
+    chatHistory.pop();
+  });
+}
+
+
+function appendMessage(text, isUser) {
+  var container = document.getElementById("chatMessages");
+  var div = document.createElement("div");
+  div.className = "msg-in mb-5 sm:mb-6";
+
+  if (isUser) {
+    div.innerHTML = '<div class="flex justify-end"><div class="max-w-[88%] sm:max-w-[78%]">' +
+      '<div class="px-5 py-4 sm:px-6 sm:py-5 rounded-2xl rounded-br-md leading-relaxed" style="background:linear-gradient(135deg,rgba(6,182,212,0.12),rgba(6,182,212,0.06));border:1px solid rgba(6,182,212,0.15);color:#e2e8f0;font-size:20px">' +
+      escapeHtml(text) +
+      '</div></div></div>';
+  } else {
+    div.innerHTML = '<div class="flex gap-3"><div class="w-10 h-10 sm:w-11 sm:h-11 rounded-lg neon-bg neon-border flex items-center justify-center flex-shrink-0 mt-1">' +
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v1H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V5a3 3 0 0 0-3-3z"/><circle cx="12" cy="14" r="2"/></svg>' +
+      '</div><div class="max-w-[88%] sm:max-w-[82%]">' +
+      '<div class="msg-content px-5 py-4 sm:px-6 sm:py-5 rounded-2xl rounded-bl-md leading-relaxed" style="background:rgba(15,23,42,0.6);border:1px solid rgba(6,182,212,0.08);color:#e2e8f0;font-size:20px">' +
+      formatMarkdown(text) +
+      '</div></div></div>';
+  }
+
+  container.appendChild(div);
+  scrollToBottom();
+}
+
+
+function showTyping() {
+  var container = document.getElementById("chatMessages");
+  var div = document.createElement("div");
+  div.className = "msg-in mb-5 sm:mb-6";
+  div.id = "typingIndicator";
+  div.innerHTML = '<div class="flex gap-3"><div class="w-10 h-10 sm:w-11 sm:h-11 rounded-lg neon-bg neon-border flex items-center justify-center flex-shrink-0 mt-1">' +
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v1H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-4V5a3 3 0 0 0-3-3z"/><circle cx="12" cy="14" r="2"/></svg>' +
+    '</div><div class="px-6 py-5 sm:px-7 sm:py-6 rounded-2xl rounded-bl-md" style="background:rgba(15,23,42,0.6);border:1px solid rgba(6,182,212,0.08)">' +
+    '<div class="typing"><span></span><span></span><span></span></div>' +
+    '</div></div>';
+  container.appendChild(div);
+  scrollToBottom();
+}
+
+function hideTyping() {
+  var el = document.getElementById("typingIndicator");
+  if (el) el.remove();
+}
+
+function clearChat() {
+  chatHistory = [];
+  var container = document.getElementById("chatMessages");
+  container.innerHTML = '';
+  container.innerHTML = '<div class="msg-in text-center mb-8 sm:mb-10"><div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl neon-bg neon-border flex items-center justify-center mx-auto mb-5" style="box-shadow:0 0 30px rgba(6,182,212,0.15)"><i data-lucide="bot" class="w-10 h-10 sm:w-12 sm:h-12 text-neon-400"></i></div><h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">CyberSecurity AI Tutor</h2><p class="text-xl sm:text-2xl md:text-[26px] text-cDark-200 max-w-2xl mx-auto leading-relaxed">Your personal assistant for learning offensive & defensive security. Ask anything about tools, techniques, and concepts.</p></div><div class="h-px bg-gradient-to-r from-transparent via-cDark-700/50 to-transparent mb-8"></div>';
+  lucide.createIcons({ nodes: [container] });
+  showToast("Chat cleared");
+}
+
+function scrollToBottom() {
+  var area = document.getElementById("chatArea");
+  setTimeout(function(){ area.scrollTop = area.scrollHeight; }, 50);
+}
+
+function escapeHtml(text) {
+  var div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+function formatMarkdown(text) {
+  text = text.replace(/```(\w*)\n?([\s\S]*?)```/g, function(match, lang, code) {
+    return '<pre><code style="font-size:18px">' + escapeHtml(code.trim()) + '</code></pre>';
+  });
+  text = text.replace(/`([^`]+)`/g, '<code style="font-size:18px">$1</code>');
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*(.+?)\*/g, '<em>$1</em>');
+  text = text.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  text = text.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  text = text.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  text = text.replace(/^[\-\*] (.+)$/gm, '<li>$1</li>');
+  text = text.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+  text = text.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+  text = text.replace(/\n/g, '<br>');
+  return text;
+}
+
+function showToast(msg) {
+  var existing = document.getElementById("chatToast");
+  if (existing) existing.remove();
+  var toast = document.createElement("div");
+  toast.id = "chatToast";
+  toast.textContent = msg;
+  toast.style.cssText = "position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);padding:14px 28px;background:rgba(15,23,42,0.95);border:1px solid rgba(6,182,212,0.2);border-radius:12px;color:#22d3ee;font-size:18px;font-weight:500;z-index:999;opacity:0;transition:all 0.3s ease;font-family:Outfit,sans-serif;backdrop-filter:blur(8px)";
+  document.body.appendChild(toast);
+  setTimeout(function(){ toast.style.opacity="1"; toast.style.transform="translateX(-50%) translateY(0)"; }, 10);
+  setTimeout(function(){ toast.style.opacity="0"; toast.style.transform="translateX(-50%) translateY(20px)"; setTimeout(function(){ toast.remove(); }, 300); }, 2000);
+}
+
+document.getElementById("chatInput").addEventListener("keydown", function(e) {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    sendMessage(new Event("submit"));
+  }
+});
+
+lucide.createIcons();
+</script>
+</body>
+</html>
