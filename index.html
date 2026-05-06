@@ -2869,13 +2869,13 @@ You help with: penetration testing, network security, web security, digital fore
   });
 
   // Close chat when clicking outside (optional — remove if you don't want this)
-  // document.addEventListener('click', function(e) {
-  //   var overlay = document.getElementById('ai-chat-overlay');
-  //   var btn = document.getElementById('ai-float-btn');
-  //   if (chatOpen && !overlay.contains(e.target) && !btn.contains(e.target)) {
-  //     toggleAIChat();
-  //   }
-  // });
+  document.addEventListener('click', function(e) {
+    var overlay = document.getElementById('ai-chat-overlay');
+    var btn = document.getElementById('ai-float-btn');
+    if (chatOpen && !overlay.contains(e.target) && !btn.contains(e.target)) {
+      toggleAIChat();
+    }
+  });
 
 })();
 </script>
