@@ -2121,7 +2121,7 @@
     width: 400px;
     height: 580px;
     max-height: calc(100vh - 140px);
-    z-index: 9998;
+    z-index: 99999;
     pointer-events: none;
     opacity: 0;
     transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2501,19 +2501,40 @@
   }
 
   /* ════════════════════════════════════════
-     MOBILE RESPONSIVE
+     MOBILE RESPONSIVE — FULL OVERHAUL
      ════════════════════════════════════════ */
 
   /* Tablets and small screens */
   @media (max-width: 520px) {
+
+    /* ── Float Button (when chat closed) ── */
+    #ai-float-btn {
+      left: 16px;
+      bottom: 20px;
+      width: 54px;
+      height: 54px;
+    }
+    #ai-float-btn i { font-size: 24px; }
+    .ai-tooltip { display: none; }
+
+    /* ── CRITICAL: Hide float button when chat is open ── */
+    #ai-chat-overlay.ai-open ~ #ai-float-btn,
+    #ai-float-btn.ai-hidden {
+      display: none !important;
+    }
+
+    /* ── Overlay: TRUE full screen, above EVERYTHING ── */
     #ai-chat-overlay {
+      top: 0;
       left: 0;
+      right: 0;
       bottom: 0;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh;
-      max-height: 100vh;
-      max-height: 100dvh;
+      width: 100vw !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      max-height: 100vh !important;
+      max-height: 100dvh !important;
+      z-index: 999999 !important;
       border-radius: 0;
       transform: translateY(100%);
       transform-origin: bottom center;
@@ -2524,69 +2545,114 @@
       border-radius: 0;
     }
 
+    /* ── Window: edge-to-edge, no border radius ── */
     #ai-chat-window {
-      border-radius: 0;
-      border: none;
-      padding-top: env(safe-area-inset-top);
+      border-radius: 0 !important;
+      border: none !important;
+      box-shadow: none !important;
     }
 
+    /* ── Header: safe area + bigger touch targets ── */
     .ai-chat-header {
-      padding: 12px 14px;
-      padding-top: max(12px, env(safe-area-inset-top));
+      padding: 14px 14px;
+      padding-top: max(14px, env(safe-area-inset-top));
     }
 
-    #ai-float-btn {
-      left: 16px;
-      bottom: 20px;
-      width: 54px;
-      height: 54px;
+    .ai-header-avatar {
+      width: 38px;
+      height: 38px;
     }
 
-    #ai-float-btn i { font-size: 24px; }
-    .ai-tooltip { display: none; }
+    .ai-header-title {
+      font-size: 16px;
+    }
 
-    .ai-welcome { padding: 12px 6px 8px; }
-    .ai-welcome h3 { font-size: 18px; }
-    .ai-welcome p { font-size: 13px; }
+    .ai-header-btn {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+    }
+
+    /* ── Welcome section ── */
+    .ai-welcome { padding: 20px 10px 12px; }
+    .ai-welcome-icon { width: 64px; height: 64px; }
+    .ai-welcome-icon i { font-size: 28px; }
+    .ai-welcome h3 { font-size: 20px; }
+    .ai-welcome p { font-size: 14px; }
+
+    /* ── Suggestion chips ── */
+    .ai-suggestions {
+      gap: 8px;
+      margin: 16px 0;
+    }
 
     .ai-suggestion-chip {
-      font-size: 12px;
-      padding: 7px 12px;
+      font-size: 13px;
+      padding: 9px 14px;
     }
+    .ai-suggestion-chip i { font-size: 12px; }
 
+    /* ── Messages: bigger text, more readable ── */
     .ai-msg-user .ai-msg-bubble,
     .ai-msg-bot .ai-msg-bubble {
       font-size: 15px;
-      max-width: 88%;
+      max-width: 85%;
+      padding: 11px 15px;
+      line-height: 1.75;
     }
 
-    .ai-msg-bubble code { font-size: 13px; }
-    .ai-msg-bubble pre { font-size: 13px; padding: 8px; }
+    .ai-bot-avatar {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+    }
+    .ai-bot-avatar i { font-size: 14px; }
 
+    .ai-msg-bubble code { font-size: 13px; }
+    .ai-msg-bubble pre { font-size: 13px; padding: 10px; }
+    .ai-msg-bubble h1 { font-size: 18px; }
+    .ai-msg-bubble h2 { font-size: 17px; }
+    .ai-msg-bubble h3 { font-size: 16px; }
+
+    /* ── Footer/Input: keyboard-friendly ── */
     .ai-chat-footer {
       padding: 10px 12px;
       padding-bottom: max(10px, env(safe-area-inset-bottom));
+      background: rgba(6, 8, 16, 0.98);
     }
 
     #ai-chat-input {
-      font-size: 16px; /* Prevents iOS zoom - DO NOT reduce */
-      padding: 12px 14px;
+      font-size: 16px; /* Prevents iOS zoom — DO NOT reduce */
+      padding: 13px 14px;
+      border-radius: 14px;
     }
 
     .ai-send-btn {
-      width: 46px;
-      height: 46px;
-      min-width: 46px;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 14px;
+    }
+
+    .ai-powered-text {
+      font-size: 10px;
+    }
+
+    /* ── Queue badge ── */
+    .ai-queue-badge {
+      font-size: 12px;
+      padding: 4px 12px;
     }
   }
 
   /* Very small phones (iPhone SE, etc.) */
   @media (max-width: 380px) {
-    .ai-header-avatar { width: 36px; height: 36px; }
-    .ai-header-avatar i { font-size: 16px; }
-    .ai-header-title { font-size: 14px; }
+    .ai-header-avatar { width: 34px; height: 34px; }
+    .ai-header-avatar i { font-size: 15px; }
+    .ai-header-title { font-size: 15px; }
     .ai-suggestions { gap: 6px; }
-    .ai-suggestion-chip { font-size: 11px; padding: 6px 10px; }
+    .ai-suggestion-chip { font-size: 12px; padding: 8px 12px; }
+    .ai-welcome h3 { font-size: 18px; }
   }
 
   /* Landscape mode on mobile */
@@ -2645,10 +2711,18 @@ You help with: penetration testing, network security, web security, digital fore
   var currentController = null; // AbortController for cancelling requests
 
   // ══════════════════════════════════════
+  //  MOBILE DETECTION
+  // ══════════════════════════════════════
+  function isMobile() {
+    return window.innerWidth <= 520;
+  }
+
+  // ══════════════════════════════════════
   //  TOGGLE CHAT
   // ══════════════════════════════════════
   window.toggleAIChat = function() {
     var overlay = document.getElementById('ai-chat-overlay');
+    var floatBtn = document.getElementById('ai-float-btn');
     var btnIcon = document.getElementById('ai-btn-icon');
     var badge = document.getElementById('ai-badge');
 
@@ -2658,11 +2732,25 @@ You help with: penetration testing, network security, web security, digital fore
       overlay.classList.add('ai-open');
       btnIcon.className = 'fas fa-times';
       badge.style.display = 'none';
+
+      // On mobile: hide the float button completely (no overlap with chat)
+      if (isMobile()) {
+        floatBtn.classList.add('ai-hidden');
+      }
+
       // Delay focus slightly so the animation doesn't conflict
       setTimeout(function(){ document.getElementById('ai-chat-input').focus(); }, 400);
     } else {
       overlay.classList.remove('ai-open');
       btnIcon.className = 'fas fa-robot';
+
+      // On mobile: show the float button again
+      if (isMobile()) {
+        floatBtn.classList.remove('ai-hidden');
+      }
+
+      // Blur input to close keyboard on mobile
+      document.getElementById('ai-chat-input').blur();
     }
   };
 
@@ -3027,7 +3115,7 @@ You help with: penetration testing, network security, web security, digital fore
     }
   });
 
-  // Close chat when clicking outside
+  // Close chat when clicking outside (desktop only — mobile uses X button)
   var justToggled = false;
   document.getElementById('ai-float-btn').addEventListener('click', function() {
     justToggled = true;
@@ -3036,12 +3124,29 @@ You help with: penetration testing, network security, web security, digital fore
 
   document.addEventListener('click', function(e) {
     if (justToggled) return;
+    if (isMobile()) return; // On mobile, only close via the X button
     var overlay = document.getElementById('ai-chat-overlay');
     var btn = document.getElementById('ai-float-btn');
     if (chatOpen && !overlay.contains(e.target) && !btn.contains(e.target)) {
       toggleAIChat();
     }
   });
+
+  // Handle mobile back button / escape key to close chat
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && chatOpen) {
+      toggleAIChat();
+    }
+  });
+
+  // On mobile: when keyboard opens, scroll chat to bottom
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', function() {
+      if (chatOpen) {
+        scrollAIToBottom();
+      }
+    });
+  }
 
 })();
 </script>
