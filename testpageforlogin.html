@@ -1,0 +1,135 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Cyber Rakshak</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+      background: #050816;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0,255,255,0.2);
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      width: 320px;
+      backdrop-filter: blur(10px);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #00e6ff;
+      text-shadow: 0 0 10px #00e6ff;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(0,255,255,0.3);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #00e6ff, #0066ff);
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      box-shadow: 0 0 10px #00e6ff;
+      transform: translateY(-2px);
+    }
+
+    .msg {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ff4d4d;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="login-box">
+  <h2>🔐 Login to Dashboard</h2>
+
+  <input type="email" id="email" placeholder="Enter your registered email">
+
+  <button onclick="loginUser()">Login</button>
+
+  <p class="msg" id="msg"></p>
+</div>
+
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbwWn7PUguSKvq58cysxYNJPxZXMUcRee03-zjdCBcW0unLMEkuMnK-I5tfTcXLr8N7bsA/exec";
+
+function loginUser() {
+  const email = document.getElementById("email").value.trim();
+  const msg = document.getElementById("msg");
+
+  msg.innerText = "";
+
+  if (!email) {
+    msg.innerText = "❌ Please enter your email";
+    return;
+  }
+
+fetch(API_URL + "?email=" + encodeURIComponent(email))
+    .then(res => res.json())
+    .then(data => {
+
+      if (data.status === "not_found") {
+        msg.innerText = "❌ No application found";
+        return;
+      }
+
+      if (data.payment !== "Paid") {
+        msg.innerText = "⚠️ Please complete payment first";
+        return;
+      }
+
+      // ✅ Save user data
+      localStorage.setItem("user", JSON.stringify(data));
+
+      // 🚀 Redirect
+      window.location.href = "dashboard.html";
+
+    })
+    .catch(err => {
+      msg.innerText = "⚠️ Server error, try again later";
+      console.error(err);
+    });
+}
+</script>
+
+</body>
+</html> -->
