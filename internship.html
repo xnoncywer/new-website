@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Program | Cyber Rakshak</title>
+
+    <!-- Favicons -->
+    <link rel="icon" href="https://thecyberrakshak.com/assets/images/logo-48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="https://thecyberrakshak.com/assets/images/logo-96.png" sizes="96x96" type="image/png">
+    <link rel="icon" href="https://thecyberrakshak.com/assets/images/logo-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="https://thecyberrakshak.com/assets/images/logo-192.png">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- Bootstrap ONCE -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest" defer></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- style.css AFTER bootstrap -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Page Specific Styles LAST -->
+    <style>
+        body {
+            background: #050816;
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        body {
+  padding-top: 80px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 100px;
+  }
+}
+
+        .hero {
+            margin-top: 100px;
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at top, #0f2027, #050816);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: #00e6ff;
+            text-shadow: 0 0 10px #00e6ff;
+        }
+
+        .hero p {
+            color: #aaa;
+        }
+
+        .hero button {
+            padding: 10px 25px;
+            border: 1px solid #00e6ff;
+            background: transparent;
+            color: #00e6ff;
+            border-radius: 6px;
+        }
+
+        .hero button:hover {
+            background: #00e6ff;
+            color: black;
+            box-shadow: 0 0 10px #00e6ff;
+        }
+
+        .section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #00e6ff;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #00e6ff;
+        }
+
+        .details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .details div {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(0,255,255,0.2);
+        }
+
+        .cta {
+            padding: 60px;
+            text-align: center;
+            background: linear-gradient(45deg, #00e6ff, #0066ff);
+            color: black;
+        }
+
+        footer {
+            background: #081b2f;
+            padding: 20px;
+            text-align: center;
+        }
+
+
+        /* Internship Cards */
+.internship-card {
+    background: #0d2137 !important;
+    border: 2px solid #00d4ff !important;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+}
+
+.internship-card:hover {
+    transform: translateY(-10px);
+    border-color: #00d4ff !important;
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3) !important;
+}
+
+.internship-body {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.internship-img-wrap {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.internship-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.internship-card:hover .internship-img-wrap img {
+    transform: scale(1.1);
+}
+
+.internship-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 40%, rgba(5, 8, 20, 0.9));
+}
+
+.internship-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+}
+
+.internship-category {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #00d4ff;
+    border: 1px solid #00d4ff;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.internship-body {
+    padding: 20px;
+}
+
+.internship-title {
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.internship-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.internship-meta i {
+    color: #00d4ff;
+    margin-right: 4px;
+}
+
+.internship-desc {
+    color: #aaa;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.internship-apply-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.internship-apply-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    color: #fff;
+}
+    </style>
+</head>
+
+
+
+<body class="cyber-theme">
+    <!-- FILTER + SEARCH -->
+
+
+
+<!-- <div class="row g-4" id="internshipGrid"></div> -->
+<!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand logo-text" href="#">
+                <!-- <i class="fas fa-shield-halved neon-text"></i> CYBER<span class="text-primary">RAKSHAK</span> -->
+                <img src="assets/images/logo.webp" alt="CYBERRAKSHAK" width="70px" height="65px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#testimonials">Success
+                            Stories</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="blog.html">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-items nav-link" href="internship.html">Internship</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="https://play.google.com/store/apps/details?id=co.diaz.bawkn&hl=en_IN" target="_blank"
+                            class="play-store-link">
+                            <img src="assets/images/google_play_badge.png" alt="Get it on Google Play" height="40px"
+                                class="play-store-badge" loading="lazy">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>🚀 30-Day Cyber Rakshak Internship</h1>
+  <p>Hands-on learning. Real-world projects. Become industry ready.</p>
+  <button>Enroll Now</button>
+</section>
+
+<!-- OVERVIEW -->
+<section class="section">
+  <h2>Program Overview</h2>
+  <p>Join our intensive internship program designed for real-world skills.</p>
+</section>
+
+<!-- DOMAINS -->
+<!-- INTERNSHIP CARDS SECTION -->
+<!-- INTERNSHIP CARDS SECTION -->
+<section style="padding: 80px 0; background: #050f1f;">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color:#fff;">
+                Available <span style="color:#00d4ff; text-shadow: 0 0 10px #00d4ff;">Internship Domains</span>
+            </h2>
+            <p style="color:#aaa;">Choose your domain and kickstart your career</p>
+        </div>
+        <div class="row g-4" id="internshipGrid"></div>
+    </div>
+</section>
+
+
+<!-- CTA -->
+<!-- <section class="cta">
+  <h2>Start Your Career Today</h2>
+  <button>Apply Now</button>
+</section> -->
+
+<!-- FOOTER -->
+<footer class="footer-section pt-5 pb-4 position-relative overflow-hidden">
+        <div class="section-divider"></div>
+        <div class="footer-glow"></div>
+        <div class="container position-relative z-1">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-brand mb-4">
+                        <a class="navbar-brand logo-text" href="index.html">
+                            <img src="assets/images/logo.webp" alt="CYBERRAKSHAK" width="70px" height="65px"
+                                loading="lazy">
+                        </a>
+                    </div>
+                    <p class="text-secondary mb-4">
+                        The ultimate training ground for ethical hackers and digital defenders. Master the art of
+                        cybersecurity with hands-on methodology.
+                    </p>
+                    <div class="social-links d-flex gap-3">
+                        <a href="https://www.linkedin.com/company/cyber-rakshak-org" target="_blank" class="social-btn"
+                            title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/cyberrakshak" target="_blank" class="social-btn"
+                            title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-white fw-bold mb-4 footer-title">Explore</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html#hero">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#courses">Courses</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-white fw-bold mb-4 footer-title">Contact Info</h5>
+                    <div class="contact-item d-flex gap-3 mb-3">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-text">
+                            <span class="d-block text-white small opacity-50">Main Headquarters</span>
+                            <span class="text-secondary small">Ankul Chambers H-4, Sahkar Marg
+                                Near Hotel Sarovar Premier Opp. J P Underpass Crossing,
+                                Lalkothi , Jaipur , Rajasthan</span>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex gap-3 mb-3">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-text">
+                            <span class="d-block text-white small opacity-50">E-Mail</span>
+                            <a href="mailto:ceocyberrakshak@gmail.com"
+                                class="text-secondary small text-decoration-none">ceocyberrakshak@gmail.com</a><br>
+                            <a href="mailto:support@thecyberrakshak.com"
+                                class="text-secondary small text-decoration-none">support@thecyberrakshak.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex gap-3 mb-3">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-text">
+                            <span class="d-block text-white small opacity-50">Phone No.</span>
+                            <a href="tel:+917056376363" class="text-decoration-none text-secondary">
+                                <span class="lb">+91 7056376363</span><br>
+                                <span class="lb">+91 7678542845</span><br>
+                                <span class="lb">+91 9896234554</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom mt-5 pt-4 border-top border-secondary border-opacity-10 text-center">
+                <p class="text-secondary small mb-0">
+                    © 2026 <span class="text-white fw-bold">CyberRakshak</span>. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+
+<div id="wa-float-btn" title="Chat on WhatsApp" onclick="toggleWaForm()">
+        <i class="fab fa-whatsapp"></i>
+        <span class="wa-tooltip">Chat with us!</span>
+    </div>
+
+    <!-- WhatsApp Popup Form -->
+    <div id="wa-form-popup">
+        <div class="wa-form-header">
+            <div class="wa-form-header-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+                <div class="wa-form-header-title">CyberRakshak Support</div>
+                <div class="wa-form-header-sub">Typically replies within minutes</div>
+            </div>
+            <button class="wa-form-close" onclick="toggleWaForm()" aria-label="Close">&times;</button>
+        </div>
+        <div class="wa-form-body">
+            <p class="wa-form-intro">Fill in your details and we'll take you straight to WhatsApp!</p>
+            <form id="waContactForm" onsubmit="sendToWhatsApp(event)">
+                <div class="wa-input-group">
+                    <label for="wa-name"><i class="fas fa-user"></i> Your Name</label>
+                    <input type="text" id="wa-name" placeholder="Enter your full name" required autocomplete="off">
+                </div>
+                <div class="wa-input-group">
+                    <label for="wa-email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="wa-email" placeholder="Enter your email" required autocomplete="off">
+                </div>
+                <div class="wa-input-group">
+                    <label for="wa-query"><i class="fas fa-comment-dots"></i> Your Query</label>
+                    <textarea id="wa-query" rows="3" placeholder="Describe your question or interest..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="wa-submit-btn">
+                    <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- WhatsApp Styles -->
+    <style>
+        /* --- Float Button --- */
+        #wa-float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 62px;
+            height: 62px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            animation: wa-pulse 2.2s infinite;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #wa-float-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        #wa-float-btn i {
+            font-size: 32px;
+            color: #fff;
+            pointer-events: none;
+        }
+
+        @keyframes wa-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Tooltip */
+        .wa-tooltip {
+            position: absolute;
+            right: 74px;
+            background: #25D366;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+        }
+
+        #wa-float-btn:hover .wa-tooltip {
+            opacity: 1;
+        }
+
+        /* --- Popup Form --- */
+        #wa-form-popup {
+            position: fixed;
+            bottom: 105px;
+            right: 30px;
+            width: 340px;
+            background: rgba(10, 10, 20, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 211, 102, 0.1);
+            z-index: 9998;
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        #wa-form-popup.wa-open {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Header */
+        .wa-form-header {
+            background: linear-gradient(135deg, #075E54, #128C7E);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .wa-form-header-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .wa-form-header-icon i {
+            font-size: 22px;
+            color: #fff;
+        }
+
+        .wa-form-header-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .wa-form-header-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+        }
+
+        .wa-form-close {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .wa-form-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Body */
+        .wa-form-body {
+            padding: 18px 20px 20px;
+        }
+
+        .wa-form-intro {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .wa-input-group {
+            margin-bottom: 13px;
+        }
+
+        .wa-input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #25D366;
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
+
+        .wa-input-group label i {
+            margin-right: 5px;
+            font-size: 11px;
+        }
+
+        .wa-input-group input,
+        .wa-input-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(37, 211, 102, 0.25);
+            border-radius: 10px;
+            padding: 9px 13px;
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+            resize: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            box-sizing: border-box;
+        }
+
+        .wa-input-group input:focus,
+        .wa-input-group textarea:focus {
+            border-color: #25D366;
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.12);
+        }
+
+        .wa-input-group input::placeholder,
+        .wa-input-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .wa-submit-btn {
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 4px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .wa-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+        }
+
+        .wa-submit-btn i {
+            font-size: 16px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            #wa-form-popup {
+                width: calc(100vw - 30px);
+                right: 15px;
+                bottom: 100px;
+            }
+
+            #wa-float-btn {
+                right: 15px;
+                bottom: 20px;
+            }
+        }
+    </style>
+
+<script>
+        const WA_NUMBER = '+917678542845';
+
+        function toggleWaForm() {
+            const popup = document.getElementById('wa-form-popup');
+            popup.classList.toggle('wa-open');
+        }
+
+        document.addEventListener('click', function (e) {
+            const popup = document.getElementById('wa-form-popup');
+            const btn = document.getElementById('wa-float-btn');
+            if (popup.classList.contains('wa-open')
+                && !popup.contains(e.target)
+                && !btn.contains(e.target)) {
+                popup.classList.remove('wa-open');
+            }
+        });
+
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('wa-name').value.trim();
+            const email = document.getElementById('wa-email').value.trim();
+            const query = document.getElementById('wa-query').value.trim();
+
+            const message =
+                `Hello CyberRakshak! 👋%0A%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Email:* ${encodeURIComponent(email)}%0A` +
+                `*Query:* ${encodeURIComponent(query)}`;
+
+            const url = `https://wa.me/${WA_NUMBER}?text=${message}`;
+            window.open(url, '_blank');
+
+            document.getElementById('waContactForm').reset();
+            document.getElementById('wa-form-popup').classList.remove('wa-open');
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+<script src="js/internship.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof AOS !== "undefined") {
+    AOS.init();
+  }
+});
+</script>
+</body>
+</html>

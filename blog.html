@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicons -->
+    <link rel="icon" href="https://thecyberrakshak.com/assets/images/logo-48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="https://thecyberrakshak.com/assets/images/logo-96.png" sizes="96x96" type="image/png">
+    <link rel="icon" href="https://thecyberrakshak.com/assets/images/logo-192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="https://thecyberrakshak.com/assets/images/logo-192.png">
+    <title>Blog | CyberRakshak - Cyber Security Insights</title>
+    <meta name="description"
+        content="Stay updated with the latest in cyber security, ethical hacking, and digital forensics. Knowledge base from Cyber Rakshak.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="CyberRakshak Organizations">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thecyberrakshak.com/blog.html">
+    <meta property="og:title" content="Blog | CyberRakshak - Cyber Security Insights">
+    <meta property="og:description"
+        content="Stay updated with the latest in cyber security, ethical hacking, and digital forensics.">
+    <meta property="og:image" content="https://thecyberrakshak.com/assets/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://thecyberrakshak.com/blog.html">
+    <meta property="twitter:title" content="Blog | CyberRakshak - Cyber Security Insights">
+    <meta property="twitter:description"
+        content="Stay updated with the latest in cyber security, ethical hacking, and digital forensics.">
+    <meta property="twitter:image" content="https://thecyberrakshak.com/assets/images/og-image.png">
+
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Rajdhani:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .blog-header {
+            padding-top: 150px;
+            padding-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(1, 42, 75, 0.4), transparent);
+        }
+
+        .blog-container {
+            padding-bottom: 100px;
+        }
+    </style>
+</head>
+
+<body class="cyber-theme">
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loader-container">
+        <div class="cyber-loader">
+            <div class="glitch" data-text="LOADING...">LOADING...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand logo-text" href="index.html">
+                <img src="assets/images/logo.webp" alt="CYBERRAKSHAK" width="70px" height="65px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#about">About</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#courses">Courses</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="index.html#testimonials">Success
+                            Stories</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link active" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-items nav-link" href="contact.html">Contact Us</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="https://play.google.com/store/apps/details?id=co.diaz.bawkn&hl=en_IN" target="_blank"
+                            class="play-store-link">
+                            <img src="assets/images/google_play_badge.png" alt="Get it on Google Play" height="40px"
+                                class="play-store-badge" loading="lazy">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header -->
+    <header class="blog-header">
+        <div class="container">
+            <h1 class="display-3 fw-bold text-white mb-3" data-aos="fade-up">Knowledge <span
+                    class="neon-text-blue">Base</span></h1>
+            <p class="text-secondary letter-spacing-2 text-uppercase" data-aos="fade-up" data-aos-delay="100">
+                Insights, Tutorials, and Trends from the World of Cybersecurity</p>
+        </div>
+    </header>
+
+    <!-- Blog Content -->
+    <section class="blog-container">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Blog Card 1 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-card">
+                        <div class="blog-meta">
+                            <span class="blog-category">Investigation</span>
+                            <span class="blog-date">Oct 12, 2025</span>
+                        </div>
+                        <div class="blog-image-wrapper">
+                            <img src="https://media.istockphoto.com/id/2110589243/photo/person-identity-concept-with-fingerprint-and-code.jpg?s=612x612&w=0&k=20&c=ODaXMset1mrdg49w876FdcCAEHpR1eMaM5VK9ZVW7XU="
+                                alt="Cyber Investigation" loading="lazy">
+                        </div>
+                        <div class="blog-content-overlay">
+                            <h3 class="blog-title">The Art of Digital Forensics</h3>
+                            <p class="blog-description">Discover the latest techniques used by our experts to trace
+                                complex cyber crimes and recover encrypted digital evidence.</p>
+                            <div class="blog-read-more">
+                                <a href="#" class="btn btn-cyber-outline btn-sm">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 2 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-card">
+                        <div class="blog-meta">
+                            <span class="blog-category">Hacking</span>
+                            <span class="blog-date">Oct 05, 2025</span>
+                        </div>
+                        <div class="blog-image-wrapper">
+                            <img src="https://images.pexels.com/photos/5926382/pexels-photo-5926382.jpeg"
+                                alt="Ethical Hacking" loading="lazy">
+                        </div>
+                        <div class="blog-content-overlay">
+                            <h3 class="blog-title">Penetration Testing 101</h3>
+                            <p class="blog-description">A comprehensive guide for beginners looking to break into the
+                                world of ethical hacking and infrastructure assessment.</p>
+                            <div class="blog-read-more">
+                                <a href="#" class="btn btn-cyber-outline btn-sm">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 3 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="blog-card">
+                        <div class="blog-meta">
+                            <span class="blog-category">Security</span>
+                            <span class="blog-date">Sep 28, 2025</span>
+                        </div>
+                        <div class="blog-image-wrapper">
+                            <img src="https://media.istockphoto.com/id/2167017233/photo/cyber-security-team-working-in-a-cyber-security-operations-center-soc-to-protect-datacenter.jpg?s=2048x2048&w=is&k=20&c=Qi_sjCtILrQQX5cMg98Y-Bk1eO9KrJpkLGbFcH5EYms="
+                                alt="SOC Operations" loading="lazy">
+                        </div>
+                        <div class="blog-content-overlay">
+                            <h3 class="blog-title">SOC Operations Excellence</h3>
+                            <p class="blog-description">How modern Security Operations Centers are evolving with AI and
+                                machine learning to combat advanced persistent threats.</p>
+                            <div class="blog-read-more">
+                                <a href="#" class="btn btn-cyber-outline btn-sm">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Card 4 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="blog-card">
+                        <div class="blog-meta">
+                            <span class="blog-category">Mobile</span>
+                            <span class="blog-date">Sep 20, 2025</span>
+                        </div>
+                        <div class="blog-image-wrapper">
+                            <img src="https://media.istockphoto.com/id/2035601113/photo/cybersecurity-innovations-concept-engineer-computer-working-with-laptop-computer-show-pad.jpg?s=612x612&w=0&k=20&c=zhqd2qypnGpbYCDqdOHt0BUGHDcp6ehPJzh155a5DgI="
+                                alt="Mobile Security" loading="lazy">
+                        </div>
+                        <div class="blog-content-overlay">
+                            <h3 class="blog-title">Securing Personal Assets</h3>
+                            <p class="blog-description">Simple but effective steps everyone should take to protect their
+                                mobile devices and personal identity from hackers.</p>
+                            <div class="blog-read-more">
+                                <a href="#" class="btn btn-cyber-outline btn-sm">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section pt-5 pb-4 position-relative overflow-hidden">
+        <div class="section-divider"></div>
+        <div class="footer-glow"></div>
+        <div class="container position-relative z-1">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-brand mb-4">
+                        <a class="navbar-brand logo-text" href="index.html">
+                            <img src="assets/images/logo.webp" alt="CYBERRAKSHAK" width="70px" height="65px"
+                                loading="lazy">
+                        </a>
+                    </div>
+                    <p class="text-secondary mb-4">
+                        The ultimate training ground for ethical hackers and digital defenders. Master the art of
+                        cybersecurity with hands-on methodology.
+                    </p>
+                    <div class="social-links d-flex gap-3">
+                        <a href="https://www.linkedin.com/company/cyber-rakshak-org" target="_blank" class="social-btn"
+                            title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://instagram.com/cyberrakshak" target="_blank" class="social-btn"
+                            title="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="text-white fw-bold mb-4 footer-title">Explore</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html#hero">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#courses">Courses</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <h5 class="text-white fw-bold mb-4 footer-title">Contact Info</h5>
+                    <div class="contact-item d-flex gap-3 mb-3">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-text">
+                            <span class="d-block text-white small opacity-50">Main Headquarters</span>
+                            <span class="text-secondary small">Ankul Chambers H-4, Sahkar Marg
+                                Near Hotel Sarovar Premier Opp. J P Underpass Crossing,
+                                Lalkothi , Jaipur , Rajasthan</span>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex gap-3 mb-3">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-text">
+                            <span class="d-block text-white small opacity-50">E-Mail</span>
+                            <a href="mailto:ceocyberrakshak@gmail.com"
+                                class="text-secondary small text-decoration-none">ceocyberrakshak@gmail.com</a><br>
+                            <a href="mailto:support@thecyberrakshak.com"
+                                class="text-secondary small text-decoration-none">support@thecyberrakshak.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex gap-3 mb-3">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-text">
+                            <span class="d-block text-white small opacity-50">Phone No.</span>
+                            <a href="tel:+917056376363" class="text-decoration-none text-secondary">
+                                <span class="lb">+91 7056376363</span><br>
+                                <span class="lb">+91 7678542845</span><br>
+                                <span class="lb">+91 9896234554</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom mt-5 pt-4 border-top border-secondary border-opacity-10 text-center">
+                <p class="text-secondary small mb-0">
+                    © 2026 <span class="text-white fw-bold">CyberRakshak</span>. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== WhatsApp Float Button ===== -->
+    <!-- WhatsApp Floating Button -->
+    <div id="wa-float-btn" title="Chat on WhatsApp" onclick="toggleWaForm()">
+        <i class="fab fa-whatsapp"></i>
+        <span class="wa-tooltip">Chat with us!</span>
+    </div>
+
+    <!-- WhatsApp Popup Form -->
+    <div id="wa-form-popup">
+        <div class="wa-form-header">
+            <div class="wa-form-header-icon"><i class="fab fa-whatsapp"></i></div>
+            <div>
+                <div class="wa-form-header-title">CyberRakshak Support</div>
+                <div class="wa-form-header-sub">Typically replies within minutes</div>
+            </div>
+            <button class="wa-form-close" onclick="toggleWaForm()" aria-label="Close">&times;</button>
+        </div>
+        <div class="wa-form-body">
+            <p class="wa-form-intro">Fill in your details and we'll take you straight to WhatsApp!</p>
+            <form id="waContactForm" onsubmit="sendToWhatsApp(event)">
+                <div class="wa-input-group">
+                    <label for="wa-name"><i class="fas fa-user"></i> Your Name</label>
+                    <input type="text" id="wa-name" placeholder="Enter your full name" required autocomplete="off">
+                </div>
+                <div class="wa-input-group">
+                    <label for="wa-email"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="wa-email" placeholder="Enter your email" required autocomplete="off">
+                </div>
+                <div class="wa-input-group">
+                    <label for="wa-query"><i class="fas fa-comment-dots"></i> Your Query</label>
+                    <textarea id="wa-query" rows="3" placeholder="Describe your question or interest..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="wa-submit-btn">
+                    <i class="fab fa-whatsapp"></i> Send via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- WhatsApp Styles -->
+    <style>
+        /* --- Float Button --- */
+        #wa-float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 62px;
+            height: 62px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            animation: wa-pulse 2.2s infinite;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #wa-float-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        #wa-float-btn i {
+            font-size: 32px;
+            color: #fff;
+            pointer-events: none;
+        }
+
+        @keyframes wa-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+
+            70% {
+                box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Tooltip */
+        .wa-tooltip {
+            position: absolute;
+            right: 74px;
+            background: #25D366;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.4);
+        }
+
+        #wa-float-btn:hover .wa-tooltip {
+            opacity: 1;
+        }
+
+        /* --- Popup Form --- */
+        #wa-form-popup {
+            position: fixed;
+            bottom: 105px;
+            right: 30px;
+            width: 340px;
+            background: rgba(10, 10, 20, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 211, 102, 0.1);
+            z-index: 9998;
+            overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        #wa-form-popup.wa-open {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Header */
+        .wa-form-header {
+            background: linear-gradient(135deg, #075E54, #128C7E);
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .wa-form-header-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .wa-form-header-icon i {
+            font-size: 22px;
+            color: #fff;
+        }
+
+        .wa-form-header-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .wa-form-header-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 2px;
+        }
+
+        .wa-form-close {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 18px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .wa-form-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Body */
+        .wa-form-body {
+            padding: 18px 20px 20px;
+        }
+
+        .wa-form-intro {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 14px;
+            line-height: 1.5;
+        }
+
+        .wa-input-group {
+            margin-bottom: 13px;
+        }
+
+        .wa-input-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #25D366;
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
+
+        .wa-input-group label i {
+            margin-right: 5px;
+            font-size: 11px;
+        }
+
+        .wa-input-group input,
+        .wa-input-group textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(37, 211, 102, 0.25);
+            border-radius: 10px;
+            padding: 9px 13px;
+            color: #fff;
+            font-size: 13px;
+            font-family: 'Outfit', sans-serif;
+            outline: none;
+            resize: none;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            box-sizing: border-box;
+        }
+
+        .wa-input-group input:focus,
+        .wa-input-group textarea:focus {
+            border-color: #25D366;
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.12);
+        }
+
+        .wa-input-group input::placeholder,
+        .wa-input-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .wa-submit-btn {
+            width: 100%;
+            padding: 11px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Outfit', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 4px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .wa-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+        }
+
+        .wa-submit-btn i {
+            font-size: 16px;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 480px) {
+            #wa-form-popup {
+                width: calc(100vw - 30px);
+                right: 15px;
+                bottom: 100px;
+            }
+
+            #wa-float-btn {
+                right: 15px;
+                bottom: 20px;
+            }
+        }
+    </style>
+
+    <!-- WhatsApp Script -->
+    <script>
+        const WA_NUMBER = '+917678542845';
+
+        function toggleWaForm() {
+            const popup = document.getElementById('wa-form-popup');
+            popup.classList.toggle('wa-open');
+        }
+
+        document.addEventListener('click', function (e) {
+            const popup = document.getElementById('wa-form-popup');
+            const btn = document.getElementById('wa-float-btn');
+            if (popup.classList.contains('wa-open')
+                && !popup.contains(e.target)
+                && !btn.contains(e.target)) {
+                popup.classList.remove('wa-open');
+            }
+        });
+
+        function sendToWhatsApp(e) {
+            e.preventDefault();
+            const name = document.getElementById('wa-name').value.trim();
+            const email = document.getElementById('wa-email').value.trim();
+            const query = document.getElementById('wa-query').value.trim();
+
+            const message =
+                `Hello CyberRakshak! 👋%0A%0A` +
+                `*Name:* ${encodeURIComponent(name)}%0A` +
+                `*Email:* ${encodeURIComponent(email)}%0A` +
+                `*Query:* ${encodeURIComponent(query)}`;
+
+            const url = `https://wa.me/${WA_NUMBER}?text=${message}`;
+            window.open(url, '_blank');
+
+            document.getElementById('waContactForm').reset();
+            document.getElementById('wa-form-popup').classList.remove('wa-open');
+        }
+    </script>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Loader
+            const loader = document.getElementById('loader');
+            if (loader) {
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        loader.style.display = 'none';
+                    }, 500);
+                }, 500);
+            }
+
+            // AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+
+            // Back to Top
+            const backToTopBtn = document.getElementById("back-to-top");
+            window.addEventListener("scroll", () => {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add("show");
+                } else {
+                    backToTopBtn.classList.remove("show");
+                }
+            });
+
+            backToTopBtn.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    </script>
+</body>
+
+</html>
