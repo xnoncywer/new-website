@@ -1,216 +1,873 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>Dashboard</title>
-</head>
-<body style="background:#050816; color:white; text-align:center; padding-top:100px;">
-
-<h1>Welcome</h1>
-<p id="userInfo"></p>
-
-<script>
-const user = JSON.parse(localStorage.getItem("user"));
-
-if (!user) {
-  window.location.href = "login.html";
-}
-
-document.getElementById("userInfo").innerHTML = `
-Name: ${user.name} <br>
-Domain: ${user.domain} <br>
-Payment Status: ${user.payment}
-`;
-</script>
-
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Dashboard | Cyber Rakshak</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Rakshak — Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Outfit', 'sans-serif'] },
+          colors: {
+            neon: { 50:'#ecfeff',100:'#cffafe',200:'#a5f3fc',300:'#67e8f9',400:'#22d3ee',500:'#06b6d4',600:'#0891b2',700:'#0e7490',800:'#155e75',900:'#164e63',950:'#083344' },
+            cDark: { 50:'#e2e8f0',100:'#cbd5e1',200:'#94a3b8',300:'#64748b',400:'#475569',500:'#334155',600:'#1e293b',700:'#0f172a',800:'#0a0e1a',900:'#060a14',950:'#020408' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Outfit',sans-serif;background:#020408;color:#cbd5e1;font: size 25px;}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:#0a0e1a}
+    ::-webkit-scrollbar-thumb{background:#1e293b;border-radius:3px}
+    ::-webkit-scrollbar-thumb:hover{background:#06b6d4}
+    .neon-glow{box-shadow:0 0 15px rgba(6,182,212,0.15),0 0 45px rgba(6,182,212,0.05)}
+    .neon-glow-strong{box-shadow:0 0 20px rgba(6,182,212,0.3),0 0 60px rgba(6,182,212,0.1)}
+    .neon-glow-sm{box-shadow:0 0 8px rgba(6,182,212,0.15)}
+    .neon-border{border:1px solid rgba(6,182,212,0.15)}
+    .neon-border-strong{border:1px solid rgba(6,182,212,0.3)}
+    .neon-border-hover:hover{border-color:rgba(6,182,212,0.4)}
+    .neon-bg{background:rgba(6,182,212,0.08)}
+    .cyber-grid{background-image:linear-gradient(rgba(6,182,212,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.02) 1px,transparent 1px);background-size:50px 50px}
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin:0;
-  font-family:'Outfit',sans-serif;
-  background:#050816;
-  color:#fff;
-}
-
-.container {
-  padding:20px;
-  max-width:1100px;
-  margin:auto;
-}
-
-.card {
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(0,255,255,0.2);
-  border-radius:12px;
-  padding:20px;
-  margin-bottom:20px;
-}
-
-h2 { color:#00e6ff; }
-
-.progress-bar {
-  height:10px;
-  background:#111;
-  border-radius:10px;
-  overflow:hidden;
-}
-.progress-fill {
-  height:100%;
-  background:#00e6ff;
-  width:0%;
-}
-
-.btn {
-  padding:10px 15px;
-  background:#00e6ff;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  color:#000;
-  font-weight:bold;
-}
-.locked {
-  background:#444;
-  cursor:not-allowed;
-}
-
-iframe {
-  width:100%;
-  height:200px;
-  border:none;
-  margin-top:10px;
-}
-</style>
+    .sidebar-link{transition:all 0.2s ease;position:relative}
+    .sidebar-link::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:0;background:#06b6d4;border-radius:0 2px 2px 0;transition:height 0.2s ease;box-shadow:0 0 8px rgba(6,182,212,0.5)}
+    .sidebar-link.active::before,.sidebar-link:hover::before{height:60%}
+    .sidebar-link.active{background:rgba(6,182,212,0.08);color:#22d3ee}
+    .sidebar-link:hover{background:rgba(6,182,212,0.05);color:#22d3ee}
+    .progress-bar{transition:width 1s ease-out}
+    .card-hover{transition:all 0.3s ease}
+    .card-hover:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(6,182,212,0.08)}
+    .video-card img{transition:transform 0.5s ease,filter 0.5s ease}
+    .video-card:hover img{transform:scale(1.05);filter:brightness(1.15)}
+    .task-check{transition:all 0.2s ease}
+    .task-check.checked{background:#06b6d4;border-color:#06b6d4;box-shadow:0 0 10px rgba(6,182,212,0.3)}
+    .toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;background:#0f172a;border:1px solid rgba(6,182,212,0.3);border-radius:10px;color:#22d3ee;font-size:14px;font-weight:500;z-index:9999;transform:translateY(100px);opacity:0;transition:all 0.3s ease}
+    .toast.show{transform:translateY(0);opacity:1}
+    .fade-in{animation:fadeIn 0.4s ease-out}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .pulse-dot{animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 4px rgba(6,182,212,0.5)}50%{opacity:0.4;box-shadow:none}}
+    .modal-overlay{position:fixed;inset:0;background:rgba(2,4,8,0.8);backdrop-filter:blur(6px);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease}
+    .modal-overlay.show{opacity:1;pointer-events:auto}
+    .modal-content{background:#0f172a;border:1px solid rgba(6,182,212,0.2);border-radius:16px;max-width:640px;width:90%;max-height:80vh;overflow-y:auto;transform:scale(0.95);transition:transform 0.3s ease}
+    .modal-overlay.show .modal-content{transform:scale(1)}
+    .neon-line{height:1px;background:linear-gradient(90deg,transparent,rgba(6,182,212,0.3),transparent)}
+    @media(max-width:1023px){
+      .sidebar{transform:translateX(-100%);position:fixed;z-index:50;height:100vh}
+      .sidebar.open{transform:translateX(0)}
+      .mobile-overlay{position:fixed;inset:0;background:rgba(2,4,8,0.6);z-index:40;display:none}
+      .mobile-overlay.show{display:block}
+    }
+  </style>
 </head>
+<body class="cyber-grid">
 
-<body>
+  <div class="scan-line"></div>
+  <div class="mobile-overlay" id="mobileOverlay" onclick="toggleSidebar()"></div>
+  <div class="toast" id="toast"></div>
 
-<div class="container">
-
-  <h2 id="welcome"></h2>
-
-  <!-- Progress -->
-  <div class="card">
-    <h3>📊 Progress</h3>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
+  <!-- Video Modal -->
+  <div class="modal-overlay" id="videoModal">
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-white" id="modalTitle"></h3>
+        <button onclick="closeVideoModal()" class="text-cDark-300 hover:text-white transition-colors p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="aspect-video bg-cDark-900 rounded-xl overflow-hidden relative mb-4" id="modalVideoArea"></div>
+      <div id="modalDesc"></div>
     </div>
   </div>
 
-  <!-- Countdown -->
-  <div class="card">
-    <h3>📅 Internship Countdown</h3>
-    <p id="countdown"></p>
+  <!-- Task Modal -->
+  <div class="modal-overlay" id="taskModal">
+    <div class="modal-content p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-semibold text-white" id="taskModalTitle"></h3>
+        <button onclick="closeTaskModal()" class="text-cDark-300 hover:text-white transition-colors p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div id="taskModalBody"></div>
+    </div>
   </div>
 
-  <!-- Tasks -->
-  <div class="card">
-    <h3>📚 Tasks</h3>
-    <ul id="tasks"></ul>
-  </div>
+  <div class="flex h-screen overflow-hidden">
 
-  <!-- Videos -->
-  <div class="card">
-    <h3>🎥 Learning Videos</h3>
-    <div id="videos"></div>
-  </div>
+    <!-- SIDEBAR -->
+    <aside class="sidebar w-64 bg-cDark-900/95 backdrop-blur-md border-r border-cDark-700/50 flex flex-col transition-transform duration-300 lg:translate-x-0 flex-shrink-0" id="sidebar">
+      <div class="p-5 border-b border-cDark-700/50">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-neon-500/10 neon-border rounded-xl flex items-center justify-center neon-glow-sm">
+            <i data-lucide="shield-check" class="w-5 h-5 text-neon-400"></i>
+          </div>
+          <div>
+            <h1 class="text-sm font-bold text-white tracking-wide">CYBER RAKSHAK</h1>
+            <p class="text-[10px] text-neon-500/60 tracking-[0.2em] uppercase font-medium">Internship Portal</p>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-3 border-b border-cDark-700/50">
+        <div class="flex items-center gap-2 px-3 py-2 rounded-lg neon-bg neon-border">
+          <div class="w-2 h-2 rounded-full bg-neon-400 pulse-dot"></div>
+          <span class="text-[11px] font-medium text-neon-400 truncate" id="sidebarDomain">Loading...</span>
+        </div>
+      </div>
+      <nav class="flex-1 py-4 px-3 space-y-1 overflow-y-auto">
+        <a href="#" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium" data-section="overview" onclick="switchSection('overview',this)">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Overview
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-300" data-section="profile" onclick="switchSection('profile',this)">
+          <i data-lucide="user" class="w-4 h-4"></i> My Profile
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-300" data-section="tasks" onclick="switchSection('tasks',this)">
+          <i data-lucide="list-checks" class="w-4 h-4"></i> Tasks
+          <span class="ml-auto text-[10px] font-bold neon-bg text-neon-400 px-2 py-0.5 rounded-full" id="taskBadge">0</span>
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-300" data-section="videos" onclick="switchSection('videos',this)">
+          <i data-lucide="play-circle" class="w-4 h-4"></i> Learn
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-300" data-section="certificate" onclick="switchSection('certificate',this)">
+          <i data-lucide="award" class="w-4 h-4"></i> Certificate
+        </a>
+        <div class="pt-4 pb-2"><div class="neon-line mb-3"></div><p class="px-3 text-[10px] font-semibold text-cDark-400 tracking-[0.15em] uppercase">Support</p></div>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-300" data-section="resources" onclick="switchSection('resources',this)">
+          <i data-lucide="folder-open" class="w-4 h-4"></i> Materials
+        </a>
+        <a href="#" class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-300" data-section="doubts" onclick="switchSection('doubts',this)">
+          <i data-lucide="message-circle-question" class="w-4 h-4"></i> Raise Doubt
+        </a>
+      </nav>
+      <div class="p-4 border-t border-cDark-700/50">
+        <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-cDark-400 hover:text-red-400 hover:bg-red-500/5 transition-all">
+          <i data-lucide="log-out" class="w-4 h-4"></i> Logout
+        </button>
+      </div>
+    </aside>
 
-  <!-- Ebooks -->
-  <div class="card">
-    <h3>📘 E-Books</h3>
-    <ul id="ebooks"></ul>
-  </div>
+    <!-- MAIN -->
+    <main class="flex-1 overflow-y-auto">
+      <header class="sticky top-0 z-30 bg-cDark-950/80 backdrop-blur-xl border-b border-cDark-700/50">
+        <div class="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+          <div class="flex items-center gap-3">
+            <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-lg hover:bg-cDark-700/50 transition-colors">
+              <i data-lucide="menu" class="w-5 h-5 text-cDark-200"></i>
+            </button>
+            <div>
+              <h2 class="text-base font-semibold text-white" id="sectionTitle">Overview</h2>
+              <p class="text-xs text-cDark-400" id="sectionSubtitle">Welcome back</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="relative p-2 rounded-lg hover:bg-cDark-700/50 transition-colors" onclick="showToast('No new notifications')">
+              <i data-lucide="bell" class="w-5 h-5 text-cDark-400"></i>
+              <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-neon-400 rounded-full pulse-dot"></span>
+            </button>
+            <div class="w-9 h-9 rounded-full neon-bg neon-border flex items-center justify-center cursor-pointer" onclick="switchSection('profile',document.querySelector('[data-section=profile]'))">
+              <span class="text-xs font-bold text-neon-400" id="avatarInitial">?</span>
+            </div>
+          </div>
+        </div>
+      </header>
 
-  <!-- Certificate -->
-  <div class="card">
-    <h3>🏆 Certificate</h3>
-    <button id="certBtn" class="btn locked">Locked (Complete 30 Days)</button>
-  </div>
+      <div class="p-4 sm:p-6 lg:p-8">
 
-</div>
+        <!-- OVERVIEW -->
+        <section id="section-overview" class="fade-in space-y-6">
+          <div class="relative overflow-hidden rounded-2xl neon-border bg-gradient-to-br from-neon-950/30 via-cDark-900 to-cDark-900 p-6 sm:p-8">
+            <div class="absolute top-0 right-0 w-80 h-80 bg-neon-500/5 rounded-full blur-[80px]"></div>
+            <div class="absolute bottom-0 left-0 w-60 h-60 bg-neon-700/5 rounded-full blur-[60px]"></div>
+            <div class="absolute top-4 right-4 opacity-[0.03]"><i data-lucide="shield" class="w-40 h-40 text-neon-400"></i></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-1.5 h-1.5 rounded-full bg-neon-400 pulse-dot"></div>
+                <p class="text-neon-400 text-xs font-semibold tracking-[0.2em] uppercase">Internship Dashboard</p>
+              </div>
+              <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">Welcome, <span class="neon-text" id="welcomeName">Loading...</span></h2>
+              <p class="text-cDark-200 text-sm max-w-lg leading-relaxed" id="welcomeDomain"></p>
+              <div class="flex flex-wrap gap-3 mt-5">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cDark-800/80 neon-border text-xs">
+                  <i data-lucide="calendar" class="w-3 h-3 text-neon-400"></i>
+                  <span class="text-cDark-200">8 Weeks • 120 Hours</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cDark-800/80 neon-border text-xs">
+                  <i data-lucide="zap" class="w-3 h-3 text-neon-400"></i>
+                  <span class="text-cDark-200" id="skillText">—</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cDark-800/80 neon-border text-xs">
+                  <i data-lucide="target" class="w-3 h-3 text-neon-400"></i>
+                  <span class="text-cDark-200" id="progressText">—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="card-hover bg-cDark-800/60 neon-border rounded-xl p-5 backdrop-blur-sm">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg neon-bg flex items-center justify-center"><i data-lucide="list-checks" class="w-5 h-5 text-neon-400"></i></div>
+                <span class="text-[10px] font-semibold text-neon-400 neon-bg px-2 py-1 rounded-full" id="statTaskStatus">—</span>
+              </div>
+              <p class="text-2xl font-bold text-white" id="statTasks">0/0</p>
+              <p class="text-xs text-cDark-400 mt-1">Tasks Done</p>
+            </div>
+            <div class="card-hover bg-cDark-800/60 neon-border rounded-xl p-5 backdrop-blur-sm">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center"><i data-lucide="play-circle" class="w-5 h-5 text-blue-400"></i></div>
+              </div>
+              <p class="text-2xl font-bold text-white" id="statVideos">0/0</p>
+              <p class="text-xs text-cDark-400 mt-1">Videos Watched</p>
+            </div>
+            <div class="card-hover bg-cDark-800/60 neon-border rounded-xl p-5 backdrop-blur-sm">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center"><i data-lucide="percent" class="w-5 h-5 text-purple-400"></i></div>
+              </div>
+              <p class="text-2xl font-bold text-white" id="statProgress">0%</p>
+              <p class="text-xs text-cDark-400 mt-1">Overall</p>
+            </div>
+            <div class="card-hover bg-cDark-800/60 neon-border rounded-xl p-5 backdrop-blur-sm">
+              <div class="flex items-center justify-between mb-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center"><i data-lucide="award" class="w-5 h-5 text-amber-400"></i></div>
+              </div>
+              <p class="text-2xl font-bold text-white" id="statCert">—</p>
+              <p class="text-xs text-cDark-400 mt-1">Certificate</p>
+            </div>
+          </div>
+
+          <div class="bg-cDark-800/60 neon-border rounded-xl p-6 backdrop-blur-sm">
+            <h3 class="text-sm font-semibold text-white mb-5">Your Progress</h3>
+            <div class="space-y-5">
+              <div>
+                <div class="flex justify-between text-xs mb-2"><span class="text-cDark-300">Tasks</span><span class="text-neon-400 font-semibold" id="progressTaskPct">0%</span></div>
+                <div class="h-2 bg-cDark-700 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full" id="progressTaskBar" style="width:0%;background:linear-gradient(90deg,#0891b2,#22d3ee);box-shadow:0 0 10px rgba(6,182,212,0.4)"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-2"><span class="text-cDark-300">Videos</span><span class="text-blue-400 font-semibold" id="progressVideoPct">0%</span></div>
+                <div class="h-2 bg-cDark-700 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full bg-gradient-to-r from-blue-600 to-blue-400" id="progressVideoBar" style="width:0%"></div></div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-2"><span class="text-cDark-300">Overall</span><span class="text-purple-400 font-semibold" id="progressOverallPct">0%</span></div>
+                <div class="h-2 bg-cDark-700 rounded-full overflow-hidden"><div class="progress-bar h-full rounded-full bg-gradient-to-r from-purple-600 to-purple-400" id="progressOverallBar" style="width:0%"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-cDark-800/60 neon-border rounded-xl p-6 backdrop-blur-sm">
+              <h3 class="text-sm font-semibold text-white mb-4">Quick Actions</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <button onclick="switchSection('tasks',document.querySelector('[data-section=tasks]'))" class="flex flex-col items-center gap-2 p-4 rounded-xl bg-cDark-700/50 hover:bg-cDark-700 neon-border-hover border border-transparent transition-all"><i data-lucide="rocket" class="w-5 h-5 text-neon-400"></i><span class="text-xs font-medium text-cDark-200">Start Tasks</span></button>
+                <button onclick="switchSection('videos',document.querySelector('[data-section=videos]'))" class="flex flex-col items-center gap-2 p-4 rounded-xl bg-cDark-700/50 hover:bg-cDark-700 neon-border-hover border border-transparent transition-all"><i data-lucide="monitor-play" class="w-5 h-5 text-blue-400"></i><span class="text-xs font-medium text-cDark-200">Watch Videos</span></button>
+                <button onclick="switchSection('resources',document.querySelector('[data-section=resources]'))" class="flex flex-col items-center gap-2 p-4 rounded-xl bg-cDark-700/50 hover:bg-cDark-700 neon-border-hover border border-transparent transition-all"><i data-lucide="download" class="w-5 h-5 text-purple-400"></i><span class="text-xs font-medium text-cDark-200">Resources</span></button>
+                <button onclick="switchSection('doubts',document.querySelector('[data-section=doubts]'))" class="flex flex-col items-center gap-2 p-4 rounded-xl bg-cDark-700/50 hover:bg-cDark-700 neon-border-hover border border-transparent transition-all"><i data-lucide="help-circle" class="w-5 h-5 text-amber-400"></i><span class="text-xs font-medium text-cDark-200">Ask Doubt</span></button>
+              </div>
+            </div>
+            <div class="bg-cDark-800/60 neon-border rounded-xl p-6 backdrop-blur-sm">
+              <h3 class="text-sm font-semibold text-white mb-4">Next Up</h3>
+              <div id="nextTaskCard"><p class="text-cDark-500 text-sm">Loading...</p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- PROFILE -->
+        <section id="section-profile" class="hidden fade-in space-y-6">
+          <div class="max-w-2xl mx-auto">
+            <div class="bg-cDark-800/60 neon-border rounded-2xl overflow-hidden backdrop-blur-sm">
+              <div class="h-32 bg-gradient-to-r from-neon-950/50 via-cDark-800 to-neon-950/50 relative">
+                <div class="absolute inset-0 cyber-grid opacity-30"></div>
+                <div class="absolute top-4 right-4 opacity-[0.03]"><i data-lucide="shield" class="w-32 h-32 text-neon-400"></i></div>
+              </div>
+              <div class="px-6 pb-6 relative">
+                <div class="flex flex-col sm:flex-row sm:items-end gap-4 -mt-12">
+                  <div class="w-24 h-24 rounded-2xl neon-bg neon-border flex items-center justify-center border-4 border-cDark-800 flex-shrink-0 neon-glow-sm">
+                    <span class="text-3xl font-bold text-neon-400" id="profileAvatar">?</span>
+                  </div>
+                  <div class="flex-1 sm:pb-1">
+                    <h3 class="text-xl font-bold text-white" id="profileName">—</h3>
+                    <p class="text-sm text-neon-400 font-medium" id="profileDomain">—</p>
+                  </div>
+                  <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium neon-bg text-neon-400 neon-border sm:pb-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-neon-400 pulse-dot"></span> Active
+                  </span>
+                </div>
+                <div class="mt-6 grid sm:grid-cols-2 gap-3">
+                  <div class="bg-cDark-700/50 rounded-xl p-4 neon-border"><p class="text-[10px] text-cDark-400 tracking-widest uppercase mb-1">Email</p><p class="text-sm text-cDark-100" id="profileEmail">—</p></div>
+                  <div class="bg-cDark-700/50 rounded-xl p-4 neon-border"><p class="text-[10px] text-cDark-400 tracking-widest uppercase mb-1">WhatsApp</p><p class="text-sm text-cDark-100" id="profilePhone">—</p></div>
+                  <div class="bg-cDark-700/50 rounded-xl p-4 neon-border"><p class="text-[10px] text-cDark-400 tracking-widest uppercase mb-1">Skill Level</p><p class="text-sm text-cDark-100" id="profileSkill">—</p></div>
+                  <div class="bg-cDark-700/50 rounded-xl p-4 neon-border"><p class="text-[10px] text-cDark-400 tracking-widest uppercase mb-1">Start Date</p><p class="text-sm text-cDark-100" id="profileStart">—</p></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TASKS -->
+        <section id="section-tasks" class="hidden fade-in space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="text-xs text-cDark-400">Complete all tasks to unlock your certificate</p>
+            <span class="text-xs text-neon-400 font-medium" id="tasksCompletedCount">0 of 0</span>
+          </div>
+          <div class="space-y-3" id="tasksList"><p class="text-cDark-500 text-sm py-8 text-center">Loading...</p></div>
+        </section>
+
+        <!-- VIDEOS -->
+        <section id="section-videos" class="hidden fade-in space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <p class="text-xs text-cDark-400">Watch these videos to complete your learning module</p>
+            <span class="text-xs text-neon-400 font-medium" id="videosWatchedCount">0 of 0</span>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" id="videosList"><p class="text-cDark-500 text-sm py-8 text-center col-span-full">Loading...</p></div>
+        </section>
+
+        <!-- CERTIFICATE -->
+        <section id="section-certificate" class="hidden fade-in space-y-6">
+          <div id="certContent"><p class="text-cDark-500 text-sm py-8 text-center">Loading...</p></div>
+        </section>
+
+        <!-- RESOURCES -->
+        <section id="section-resources" class="hidden fade-in space-y-6">
+          <div class="space-y-3" id="resourcesList"><p class="text-cDark-500 text-sm py-8 text-center">Loading...</p></div>
+        </section>
+
+        <!-- DOUBTS -->
+        <section id="section-doubts" class="hidden fade-in space-y-6">
+          <div class="max-w-xl mx-auto">
+            <div class="bg-cDark-800/60 neon-border rounded-xl p-6 backdrop-blur-sm">
+              <h3 class="text-base font-semibold text-white mb-1">Raise a Doubt</h3>
+              <p class="text-xs text-cDark-400 mb-5">Mentors will respond within 24 hours</p>
+              <form onsubmit="submitDoubt(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-medium text-cDark-300 mb-1.5">Subject</label>
+                  <input type="text" id="doubtSubject" required placeholder="e.g., Issue with Task 3" class="w-full px-4 py-2.5 bg-cDark-700/50 border border-cDark-600 rounded-lg text-sm text-white placeholder-cDark-500 focus:outline-none focus:border-neon-500/50 focus:ring-1 focus:ring-neon-500/20 transition-all">
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-cDark-300 mb-1.5">Related Task / Video</label>
+                  <select id="doubtRelated" class="w-full px-4 py-2.5 bg-cDark-700/50 border border-cDark-600 rounded-lg text-sm text-white focus:outline-none focus:border-neon-500/50 transition-all"><option value="">General</option></select>
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-cDark-300 mb-1.5">Describe your doubt</label>
+                  <textarea id="doubtMessage" required rows="4" placeholder="Explain clearly..." class="w-full px-4 py-2.5 bg-cDark-700/50 border border-cDark-600 rounded-lg text-sm text-white placeholder-cDark-500 focus:outline-none focus:border-neon-500/50 focus:ring-1 focus:ring-neon-500/20 transition-all resize-none"></textarea>
+                </div>
+                <button type="submit" class="w-full py-2.5 bg-neon-500 hover:bg-neon-600 text-cDark-950 font-semibold text-sm rounded-lg transition-colors neon-glow-sm">Submit Doubt</button>
+              </form>
+            </div>
+            <div class="bg-cDark-800/60 neon-border rounded-xl p-6 mt-6 backdrop-blur-sm">
+              <h3 class="text-sm font-semibold text-white mb-4">Previous Doubts</h3>
+              <div id="doubtsHistory" class="space-y-3"><p class="text-cDark-500 text-sm text-center py-4">No doubts raised yet</p></div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
 
 <script>
-const user = JSON.parse(localStorage.getItem("user"));
+// =============================================================
+//  📦 DOMAIN CONTENT DATABASE
+//
+//  ⚠️  KEYS must match EXACTLY what's in your Google Form
+//      "Select Domain" dropdown. Case-sensitive. No extra spaces.
+//
+//  If your form has a domain NOT listed here, that student
+//  will be silently redirected to login (nothing revealed).
+// =============================================================
+var DOMAIN_DATA = {
 
-if (!user) {
-  window.location.href = "login.html";
-}
-
-// ✅ Show user
-document.getElementById("welcome").innerText =
-  "Welcome " + user.name + " (" + user.domain + ")";
-
-// 🔥 DATA SYSTEM (EDIT THIS ONLY)
-const data = {
-  "Full Stack Development": {
-    tasks: ["HTML Basics", "CSS Flexbox", "JavaScript DOM", "React Basics"],
-    videos: [
-      "https://www.youtube.com/embed/UB1O30fR-EE",
-      "https://www.youtube.com/embed/W6NZfCO5SIk"
+  "Ethical Hacking": {
+    label: "Ethical Hacking & Penetration Testing",
+    tasks: [
+      { id:"eh1", title:"Set Up Penetration Testing Lab", desc:"Install VirtualBox, Kali Linux, and configure your lab with vulnerable VMs like Metasploitable 2.", difficulty:"Easy", type:"Setup" },
+      { id:"eh2", title:"Network Scanning with Nmap", desc:"Perform host discovery, port scanning, service detection, and OS fingerprinting. Document all findings.", difficulty:"Medium", type:"Practical" },
+      { id:"eh3", title:"Vulnerability Assessment with Nessus", desc:"Run a full vulnerability scan on Metasploitable, create a report with risk ratings and CVSS scores.", difficulty:"Medium", type:"Practical" },
+      { id:"eh4", title:"Web App Testing with Burp Suite", desc:"Intercept HTTP requests, perform SQL injection and XSS testing on DVWA. Document each finding.", difficulty:"Hard", type:"Practical" },
+      { id:"eh5", title:"Metasploit Framework Exploitation", desc:"Exploit found vulnerabilities using Metasploit. Demonstrate meterpreter sessions and post-exploitation.", difficulty:"Hard", type:"Practical" },
+      { id:"eh6", title:"Password Cracking Techniques", desc:"Demonstrate cracking using John the Ripper, Hashcat, and Hydra — dictionary, brute-force, rainbow tables.", difficulty:"Medium", type:"Practical" },
+      { id:"eh7", title:"Wireless Network Security Testing", desc:"Set up test wireless network, perform WPA2 handshake capture, demonstrate cracking with Aircrack-ng.", difficulty:"Hard", type:"Practical" },
+      { id:"eh8", title:"Final Penetration Test Report", desc:"Compile all findings into a professional pentest report with executive summary and remediation steps.", difficulty:"Hard", type:"Report" }
     ],
-    ebooks: ["https://example.com/html.pdf"]
+    videos: [
+      { id:"v1", title:"Introduction to Ethical Hacking", duration:"45 min", thumb:"https://picsum.photos/seed/ethack1n/600/340", desc:"Scope, legal boundaries, and career paths in ethical hacking." },
+      { id:"v2", title:"Setting Up Your Hacking Lab", duration:"60 min", thumb:"https://picsum.photos/seed/hacklab2n/600/340", desc:"VirtualBox, Kali Linux, and vulnerable VMs setup guide." },
+      { id:"v3", title:"Nmap Complete Guide", duration:"55 min", thumb:"https://picsum.photos/seed/nmap3n/600/340", desc:"Master Nmap scanning techniques, scripts, and output formats." },
+      { id:"v4", title:"Burp Suite Masterclass", duration:"70 min", thumb:"https://picsum.photos/seed/burp4n/600/340", desc:"Proxy, repeater, intruder, and scanner modules deep dive." },
+      { id:"v5", title:"Metasploit Unleashed", duration:"80 min", thumb:"https://picsum.photos/seed/meta5n/600/340", desc:"Modules, payloads, sessions, and post-exploitation." },
+      { id:"v6", title:"Writing Professional Reports", duration:"35 min", thumb:"https://picsum.photos/seed/reprt6n/600/340", desc:"Industry-standard penetration test report structure." }
+    ],
+    resources: [
+      { name:"Kali Linux Installation Guide", type:"PDF", size:"2.4 MB", icon:"file-text" },
+      { name:"Nmap Cheat Sheet", type:"PDF", size:"500 KB", icon:"file-text" },
+      { name:"OWASP Testing Guide v4", type:"PDF", size:"8.1 MB", icon:"file-text" },
+      { name:"Metasploitable 2 VM Image", type:"Download", size:"800 MB", icon:"download" },
+      { name:"Pentest Report Template", type:"DOCX", size:"1.2 MB", icon:"file-text" }
+    ]
   },
 
-  "Cybersecurity Internship": {
-    tasks: ["Linux Basics", "Networking", "Nmap", "OWASP Top 10"],
-    videos: [
-      "https://www.youtube.com/embed/3Kq1MIfTWCE"
+  "Network Security": {
+    label: "Network Security & Monitoring",
+    tasks: [
+      { id:"ns1", title:"Network Topology Design", desc:"Design a secure network topology with DMZ, VLANs, and proper segmentation using Cisco Packet Tracer.", difficulty:"Easy", type:"Design" },
+      { id:"ns2", title:"Firewall Configuration & Testing", desc:"Configure iptables/pfSense rules. Test inbound/outbound filtering and logging.", difficulty:"Medium", type:"Practical" },
+      { id:"ns3", title:"Intrusion Detection with Snort", desc:"Install Snort IDS, write custom rules, detect simulated attacks on your network.", difficulty:"Medium", type:"Practical" },
+      { id:"ns4", title:"Wireshark Packet Analysis", desc:"Capture and analyze traffic. Identify suspicious patterns and protocol anomalies.", difficulty:"Medium", type:"Practical" },
+      { id:"ns5", title:"VPN Setup & Configuration", desc:"Set up site-to-site and remote-access VPN using OpenVPN/IPsec with encryption testing.", difficulty:"Hard", type:"Practical" },
+      { id:"ns6", title:"Network Hardening", desc:"Harden network devices, disable unnecessary services, implement CIS security baselines.", difficulty:"Hard", type:"Practical" },
+      { id:"ns7", title:"SIEM Configuration with Wazuh", desc:"Install Wazuh SIEM, configure agents, create detection rules and alerting.", difficulty:"Hard", type:"Practical" },
+      { id:"ns8", title:"Network Security Audit Report", desc:"Complete audit with findings, risk assessment, and recommendations.", difficulty:"Hard", type:"Report" }
     ],
-    ebooks: ["https://example.com/cyber.pdf"]
+    videos: [
+      { id:"v1", title:"Network Security Fundamentals", duration:"50 min", thumb:"https://picsum.photos/seed/netsec1n/600/340", desc:"Core concepts, CIA triad, and threat landscape." },
+      { id:"v2", title:"Firewall Deep Dive", duration:"65 min", thumb:"https://picsum.photos/seed/fw2n/600/340", desc:"Types, rules, and best practices for configuration." },
+      { id:"v3", title:"Wireshark Masterclass", duration:"75 min", thumb:"https://picsum.photos/seed/wsh3n/600/340", desc:"Packet capture, filtering, and threat detection." },
+      { id:"v4", title:"Intrusion Detection Systems", duration:"60 min", thumb:"https://picsum.photos/seed/ids4n/600/340", desc:"Snort configuration, rule writing, alert management." },
+      { id:"v5", title:"VPN Technologies", duration:"55 min", thumb:"https://picsum.photos/seed/vpn5n/600/340", desc:"IPsec, SSL/TLS VPNs, tunneling protocols." },
+      { id:"v6", title:"SIEM & Log Management", duration:"70 min", thumb:"https://picsum.photos/seed/siem6n/600/340", desc:"Wazuh and ELK stack for security monitoring." }
+    ],
+    resources: [
+      { name:"Cisco Packet Tracer Guide", type:"PDF", size:"1.8 MB", icon:"file-text" },
+      { name:"Wireshark Filter Cheat Sheet", type:"PDF", size:"400 KB", icon:"file-text" },
+      { name:"Snort Rules Reference", type:"PDF", size:"3.2 MB", icon:"file-text" },
+      { name:"CIS Network Benchmarks", type:"PDF", size:"5.5 MB", icon:"file-text" },
+      { name:"Network Audit Template", type:"DOCX", size:"980 KB", icon:"file-text" }
+    ]
+  },
+
+  "Web Security": {
+    label: "Web Application Security",
+    tasks: [
+      { id:"ws1", title:"Set Up Web Testing Lab", desc:"Install DVWA, BWAPP, and Juice Shop using Docker or XAMPP.", difficulty:"Easy", type:"Setup" },
+      { id:"ws2", title:"SQL Injection Testing", desc:"Perform manual and automated SQLi — UNION-based, blind, time-based on DVWA.", difficulty:"Medium", type:"Practical" },
+      { id:"ws3", title:"Cross-Site Scripting (XSS)", desc:"Test Reflected, Stored, and DOM-based XSS. Write proof-of-concept exploits.", difficulty:"Medium", type:"Practical" },
+      { id:"ws4", title:"Authentication Testing", desc:"Test broken auth, session fixation, insecure cookies, privilege escalation.", difficulty:"Hard", type:"Practical" },
+      { id:"ws5", title:"API Security Testing", desc:"Test REST APIs for broken auth, injection, excessive data exposure, rate limit bypass.", difficulty:"Hard", type:"Practical" },
+      { id:"ws6", title:"Security Headers Implementation", desc:"Implement CSP, HSTS, X-Frame-Options on a sample app and verify.", difficulty:"Medium", type:"Practical" },
+      { id:"ws7", title:"Automated Scanning with ZAP", desc:"Configure OWASP ZAP, run scans, interpret results, reduce false positives.", difficulty:"Medium", type:"Practical" },
+      { id:"ws8", title:"Web Security Assessment Report", desc:"Comprehensive report following OWASP reporting guidelines.", difficulty:"Hard", type:"Report" }
+    ],
+    videos: [
+      { id:"v1", title:"OWASP Top 10 Explained", duration:"55 min", thumb:"https://picsum.photos/seed/owasp1n/600/340", desc:"Detailed walkthrough of OWASP Top 10 vulnerabilities." },
+      { id:"v2", title:"SQL Injection Zero to Hero", duration:"80 min", thumb:"https://picsum.photos/seed/sqli2n/600/340", desc:"Basic to advanced SQLi with live demonstrations." },
+      { id:"v3", title:"XSS Attacks & Prevention", duration:"65 min", thumb:"https://picsum.photos/seed/xss3n/600/340", desc:"Exploiting and preventing XSS vulnerabilities." },
+      { id:"v4", title:"API Security Testing", duration:"60 min", thumb:"https://picsum.photos/seed/api4n/600/340", desc:"Testing REST and GraphQL APIs for vulnerabilities." },
+      { id:"v5", title:"OWASP ZAP Tutorial", duration:"70 min", thumb:"https://picsum.photos/seed/zap5n/600/340", desc:"Automated and manual scanning with ZAP." },
+      { id:"v6", title:"Secure Coding Practices", duration:"50 min", thumb:"https://picsum.photos/seed/sec6n/600/340", desc:"Writing secure code to prevent web vulnerabilities." }
+    ],
+    resources: [
+      { name:"OWASP Testing Guide v4.2", type:"PDF", size:"12 MB", icon:"file-text" },
+      { name:"SQL Injection Cheat Sheet", type:"PDF", size:"350 KB", icon:"file-text" },
+      { name:"XSS Payload Collection", type:"TXT", size:"150 KB", icon:"file-text" },
+      { name:"Security Headers Reference", type:"PDF", size:"600 KB", icon:"file-text" },
+      { name:"Web App Report Template", type:"DOCX", size:"1.1 MB", icon:"file-text" }
+    ]
+  },
+
+  "Digital Forensics": {
+    label: "Digital Forensics & Incident Response",
+    tasks: [
+      { id:"df1", title:"Forensic Lab Setup", desc:"Set up workstation with FTK Imager, Autopsy, Sleuth Kit, write-blocking.", difficulty:"Easy", type:"Setup" },
+      { id:"df2", title:"Disk Imaging & Hash Verification", desc:"Create forensic images with FTK Imager, verify with MD5/SHA-256, document chain of custody.", difficulty:"Medium", type:"Practical" },
+      { id:"df3", title:"File System Analysis", desc:"Analyze NTFS/FAT with Autopsy. Recover deleted files, examine metadata and timestamps.", difficulty:"Medium", type:"Practical" },
+      { id:"df4", title:"Windows Artifact Analysis", desc:"Analyze registry, prefetch, event logs, shellbags, and user activity.", difficulty:"Hard", type:"Practical" },
+      { id:"df5", title:"Memory Forensics with Volatility", desc:"Capture RAM, analyze with Volatility. Extract processes, connections, injected code.", difficulty:"Hard", type:"Practical" },
+      { id:"df6", title:"Network Forensics", desc:"Analyze PCAP for malicious activity. Extract files from streams, identify attack patterns.", difficulty:"Hard", type:"Practical" },
+      { id:"df7", title:"Incident Response Simulation", desc:"Simulate incident: detection, containment, eradication, recovery, lessons learned.", difficulty:"Hard", type:"Practical" },
+      { id:"df8", title:"Forensic Investigation Report", desc:"Professional report with findings, timeline reconstruction, evidence documentation.", difficulty:"Hard", type:"Report" }
+    ],
+    videos: [
+      { id:"v1", title:"Digital Forensics Fundamentals", duration:"50 min", thumb:"https://picsum.photos/seed/for1n/600/340", desc:"Legal aspects and investigation methodology." },
+      { id:"v2", title:"Forensic Imaging & Tools", duration:"55 min", thumb:"https://picsum.photos/seed/img2n/600/340", desc:"Creating images, write-blocking, tool introduction." },
+      { id:"v3", title:"Autopsy Deep Dive", duration:"70 min", thumb:"https://picsum.photos/seed/aut3n/600/340", desc:"Complete Autopsy tutorial for analysis." },
+      { id:"v4", title:"Windows Forensics", duration:"80 min", thumb:"https://picsum.photos/seed/win4n/600/340", desc:"Registry, logs, prefetch analysis." },
+      { id:"v5", title:"Memory Forensics with Volatility", duration:"75 min", thumb:"https://picsum.photos/seed/vol5n/600/340", desc:"RAM analysis with Volatility framework." },
+      { id:"v6", title:"Incident Response Framework", duration:"45 min", thumb:"https://picsum.photos/seed/ir6n/600/340", desc:"NIST IR lifecycle and implementation." }
+    ],
+    resources: [
+      { name:"FTK Imager User Guide", type:"PDF", size:"3.5 MB", icon:"file-text" },
+      { name:"Autopsy Quick Start", type:"PDF", size:"2.1 MB", icon:"file-text" },
+      { name:"Volatility Plugin Reference", type:"PDF", size:"1.8 MB", icon:"file-text" },
+      { name:"Chain of Custody Template", type:"DOCX", size:"450 KB", icon:"file-text" },
+      { name:"Forensic Report Template", type:"DOCX", size:"1.3 MB", icon:"file-text" }
+    ]
+  },
+
+  "SOC Analyst": {
+    label: "SOC Analyst & Threat Monitoring",
+    tasks: [
+      { id:"sa1", title:"SOC Operations Fundamentals", desc:"Study SOC tiers, roles, workflows, tools. Document complete alert triage process.", difficulty:"Easy", type:"Research" },
+      { id:"sa2", title:"SIEM Setup (Wazuh/ELK)", desc:"Deploy Wazuh stack, configure agents, integrate log sources.", difficulty:"Medium", type:"Practical" },
+      { id:"sa3", title:"Log Analysis & Alert Triage", desc:"Analyze logs from multiple sources, categorize by severity, document decisions.", difficulty:"Medium", type:"Practical" },
+      { id:"sa4", title:"MITRE ATT&CK Mapping", desc:"Map alerts and attack patterns to MITRE ATT&CK tactics and techniques.", difficulty:"Medium", type:"Practical" },
+      { id:"sa5", title:"Incident Detection & Investigation", desc:"Detect simulated incidents: brute force, malware, lateral movement, exfiltration.", difficulty:"Hard", type:"Practical" },
+      { id:"sa6", title:"Threat Intelligence Integration", desc:"Configure threat feeds, create IOCs, implement automated detection rules.", difficulty:"Hard", type:"Practical" },
+      { id:"sa7", title:"Playbook Creation", desc:"Create SOPs for phishing, malware, brute force incident types.", difficulty:"Hard", type:"Documentation" },
+      { id:"sa8", title:"SOC Shift Report", desc:"Comprehensive shift report with incidents, alerts, and actions taken.", difficulty:"Hard", type:"Report" }
+    ],
+    videos: [
+      { id:"v1", title:"SOC Analyst Career Path", duration:"40 min", thumb:"https://picsum.photos/seed/soc1n/600/340", desc:"SOC operations, tiers, and career progression." },
+      { id:"v2", title:"SIEM Fundamentals", duration:"60 min", thumb:"https://picsum.photos/seed/siem2n/600/340", desc:"SIEM concepts and architecture." },
+      { id:"v3", title:"Wazuh Complete Setup", duration:"75 min", thumb:"https://picsum.photos/seed/waz3n/600/340", desc:"Installation, agent deployment, configuration." },
+      { id:"v4", title:"MITRE ATT&CK Framework", duration:"65 min", thumb:"https://picsum.photos/seed/mit4n/600/340", desc:"Applying ATT&CK for threat detection." },
+      { id:"v5", title:"Threat Hunting Techniques", duration:"70 min", thumb:"https://picsum.photos/seed/th5n/600/340", desc:"Proactive hunting methodologies." },
+      { id:"v6", title:"Incident Response Playbooks", duration:"50 min", thumb:"https://picsum.photos/seed/pb6n/600/340", desc:"Creating and using incident playbooks." }
+    ],
+    resources: [
+      { name:"Wazuh Installation Guide", type:"PDF", size:"2.8 MB", icon:"file-text" },
+      { name:"MITRE ATT&CK Navigator", type:"PDF", size:"1.5 MB", icon:"file-text" },
+      { name:"SOC Procedures Template", type:"DOCX", size:"1.1 MB", icon:"file-text" },
+      { name:"Log Analysis Cheat Sheet", type:"PDF", size:"500 KB", icon:"file-text" },
+      { name:"Incident Report Template", type:"DOCX", size:"850 KB", icon:"file-text" }
+    ]
+  },
+
+  "Cloud Security": {
+    label: "Cloud Security & DevSecOps",
+    tasks: [
+      { id:"cs1", title:"Cloud Security Fundamentals", desc:"Study shared responsibility model, IAM, and cloud security architecture.", difficulty:"Easy", type:"Research" },
+      { id:"cs2", title:"IAM Configuration & Auditing", desc:"Configure IAM policies, roles, MFA. Audit for over-privileged accounts.", difficulty:"Medium", type:"Practical" },
+      { id:"cs3", title:"S3 Bucket Security Assessment", desc:"Identify and fix insecure S3 configs. Implement policies, encryption, logging.", difficulty:"Medium", type:"Practical" },
+      { id:"cs4", title:"Container Security Scanning", desc:"Scan Docker images with Trivy. Implement container security best practices.", difficulty:"Medium", type:"Practical" },
+      { id:"cs5", title:"CI/CD Pipeline Security", desc:"Integrate SAST, DAST, SCA into GitHub Actions pipeline.", difficulty:"Hard", type:"Practical" },
+      { id:"cs6", title:"Kubernetes Security", desc:"RBAC, network policies, pod security, secrets management.", difficulty:"Hard", type:"Practical" },
+      { id:"cs7", title:"IaC Security Scanning", desc:"Write secure Terraform. Scan with tfsec/checkov for misconfigurations.", difficulty:"Hard", type:"Practical" },
+      { id:"cs8", title:"Cloud Security Assessment Report", desc:"Document findings, risk assessments, and remediation steps.", difficulty:"Hard", type:"Report" }
+    ],
+    videos: [
+      { id:"v1", title:"Cloud Security Essentials", duration:"50 min", thumb:"https://picsum.photos/seed/cld1n/600/340", desc:"Shared responsibility and threat landscape." },
+      { id:"v2", title:"AWS Security Best Practices", duration:"70 min", thumb:"https://picsum.photos/seed/aws2n/600/340", desc:"Securing AWS with IAM, CloudTrail, monitoring." },
+      { id:"v3", title:"Container Security Deep Dive", duration:"65 min", thumb:"https://picsum.photos/seed/ctr3n/600/340", desc:"Docker security: scanning, runtime, orchestration." },
+      { id:"v4", title:"DevSecOps Pipeline Setup", duration:"75 min", thumb:"https://picsum.photos/seed/dev4n/600/340", desc:"Security in CI/CD with GitHub Actions." },
+      { id:"v5", title:"Kubernetes Security", duration:"80 min", thumb:"https://picsum.photos/seed/k8s5n/600/340", desc:"RBAC, network policies, supply chain security." },
+      { id:"v6", title:"IaC Security", duration:"55 min", thumb:"https://picsum.photos/seed/iac6n/600/340", desc:"Scanning Terraform and CloudFormation templates." }
+    ],
+    resources: [
+      { name:"AWS Security Checklist", type:"PDF", size:"1.2 MB", icon:"file-text" },
+      { name:"CIS AWS Benchmarks", type:"PDF", size:"4.5 MB", icon:"file-text" },
+      { name:"Docker Security Best Practices", type:"PDF", size:"2.0 MB", icon:"file-text" },
+      { name:"K8s Hardening Guide", type:"PDF", size:"3.1 MB", icon:"file-text" },
+      { name:"Cloud Assessment Template", type:"DOCX", size:"1.0 MB", icon:"file-text" }
+    ]
+  },
+
+  "Full Stack Development": {
+    label: "Full Stack Web Development",
+    tasks: [
+      { id:"fsd1", title:"Set Up Development Environment", desc:"Install VS Code, Node.js, Git, and configure your development workspace with essential extensions.", difficulty:"Easy", type:"Setup" },
+      { id:"fsd2", title:"Build a Responsive Landing Page", desc:"Create a fully responsive landing page using HTML, CSS, and JavaScript with modern design principles.", difficulty:"Easy", type:"Practical" },
+      { id:"fsd3", title:"JavaScript DOM Manipulation Project", desc:"Build an interactive web app (todo list, weather app, or quiz) using vanilla JavaScript DOM methods.", difficulty:"Medium", type:"Practical" },
+      { id:"fsd4", title:"REST API with Node.js & Express", desc:"Build a RESTful API with CRUD operations, error handling, and input validation using Express.js.", difficulty:"Medium", type:"Practical" },
+      { id:"fsd5", title:"Database Integration (MongoDB)", desc:"Connect your API to MongoDB, implement Mongoose schemas, and perform CRUD operations with proper indexing.", difficulty:"Medium", type:"Practical" },
+      { id:"fsd6", title:"User Authentication System", desc:"Implement JWT-based authentication with signup, login, password hashing, and protected routes.", difficulty:"Hard", type:"Practical" },
+      { id:"fsd7", title:"Frontend-Backend Integration", desc:"Connect your frontend to your API using fetch/axios, handle loading states, errors, and token management.", difficulty:"Hard", type:"Practical" },
+      { id:"fsd8", title:"Full Stack Project Deployment", desc:"Deploy your complete application with frontend on Vercel/Netlify and backend on Render/Railway. Write project documentation.", difficulty:"Hard", type:"Report" }
+    ],
+    videos: [
+      { id:"v1", title:"HTML & CSS Crash Course", duration:"55 min", thumb:"https://picsum.photos/seed/fsd1v/600/340", desc:"Core HTML5 semantics and modern CSS3 techniques." },
+      { id:"v2", title:"JavaScript Fundamentals", duration:"70 min", thumb:"https://picsum.photos/seed/fsd2v/600/340", desc:"Variables, functions, arrays, objects, and ES6+ features." },
+      { id:"v3", title:"Node.js & Express Deep Dive", duration:"75 min", thumb:"https://picsum.photos/seed/fsd3v/600/340", desc:"Server setup, routing, middleware, and error handling." },
+      { id:"v4", title:"MongoDB & Mongoose", duration:"65 min", thumb:"https://picsum.photos/seed/fsd4v/600/340", desc:"Schema design, CRUD operations, and aggregation pipeline." },
+      { id:"v5", title:"JWT Authentication", duration:"60 min", thumb:"https://picsum.photos/seed/fsd5v/600/340", desc:"Token generation, verification, and protected routes." },
+      { id:"v6", title:"Deployment Guide", duration:"45 min", thumb:"https://picsum.photos/seed/fsd6v/600/340", desc:"Deploy full stack apps on cloud platforms step by step." }
+    ],
+    resources: [
+      { name:"VS Code Setup Guide", type:"PDF", size:"1.5 MB", icon:"file-text" },
+      { name:"JavaScript Cheat Sheet", type:"PDF", size:"400 KB", icon:"file-text" },
+      { name:"Express.js Documentation", type:"Link", size:"External", icon:"external-link" },
+      { name:"MongoDB University Free Course", type:"Link", size:"External", icon:"external-link" },
+      { name:"Git & GitHub Guide", type:"PDF", size:"2.0 MB", icon:"file-text" }
+    ]
   }
+
 };
 
-const userData = data[user.domain];
 
-// 🔥 TASKS
-document.getElementById("tasks").innerHTML =
-  userData.tasks.map(t => `<li>${t}</li>`).join("");
+// =============================================================
+//  💾 STATE — loaded per-user inside init()
+// =============================================================
+var currentUser = null;
+var currentDomainData = null;
+var completedTasks = {};
+var watchedVideos = {};
+var submittedDoubts = [];
+var _storageKey = null;
 
-// 🔥 VIDEOS
-document.getElementById("videos").innerHTML =
-  userData.videos.map(v => `<iframe src="${v}"></iframe>`).join("");
 
-// 🔥 EBOOKS
-document.getElementById("ebooks").innerHTML =
-  userData.ebooks.map(e => `<li><a href="${e}" target="_blank">Download</a></li>`).join("");
-
-// 🔥 PROGRESS (simple demo)
-let progress = 25;
-document.getElementById("progressFill").style.width = progress + "%";
-
-// 🔥 COUNTDOWN (30 days)
-if (user.startDate) {
-  const start = new Date(user.startDate);
-  const now = new Date();
-  const diff = Math.floor((now - start) / (1000*60*60*24));
-
-  const remaining = 30 - diff;
-
-  document.getElementById("countdown").innerText =
-    remaining > 0 ? remaining + " days remaining" : "Completed";
-
-  // 🔥 CERTIFICATE UNLOCK
-  if (remaining <= 0) {
-    const btn = document.getElementById("certBtn");
-    btn.classList.remove("locked");
-    btn.innerText = "Download Certificate";
-    btn.onclick = () => alert("Generate certificate PDF here");
-  }
-} else {
-  document.getElementById("countdown").innerText = "Start date not set";
+// =============================================================
+//  🔌 LOAD USER from your login page's localStorage
+// =============================================================
+function loadUser() {
+  var stored = localStorage.getItem("user");
+  if (!stored) return null;
+  try { return JSON.parse(stored); } catch(e) { return null; }
 }
-</script>
 
+
+// =============================================================
+//  🚀 INIT
+// =============================================================
+function init() {
+  var user = loadUser();
+
+  if (!user) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  var domainData = DOMAIN_DATA[user.domain];
+  if (!domainData) {
+    // Silent redirect — reveals NOTHING
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+  currentDomainData = domainData;
+
+  // Per-user storage keys based on email
+  var safeEmail = (user.email || "unknown").replace(/[^a-zA-Z0-9]/g, "_");
+  _storageKey = function(key) { return "cr_" + safeEmail + "_" + key; };
+
+  completedTasks = JSON.parse(localStorage.getItem(_storageKey("tasks")) || "{}");
+  watchedVideos = JSON.parse(localStorage.getItem(_storageKey("videos")) || "{}");
+  submittedDoubts = JSON.parse(localStorage.getItem(_storageKey("doubts")) || "[]");
+
+  populateDashboard();
+  lucide.createIcons();
+}
+
+
+// =============================================================
+//  📊 POPULATE
+// =============================================================
+function populateDashboard() {
+  var u = currentUser, d = currentDomainData;
+  var initials = (u.name || "?").split(" ").map(function(n){return n[0]}).join("").toUpperCase();
+
+  document.getElementById("sidebarDomain").textContent = d.label;
+  document.getElementById("avatarInitial").textContent = initials;
+  document.getElementById("welcomeName").textContent = u.name.split(" ")[0];
+  document.getElementById("welcomeDomain").textContent = "You're enrolled in " + d.label + ". Complete all tasks and videos to earn your certificate.";
+  document.getElementById("skillText").textContent = u.skill || "—";
+
+  document.getElementById("profileAvatar").textContent = initials;
+  document.getElementById("profileName").textContent = u.name;
+  document.getElementById("profileDomain").textContent = d.label;
+  document.getElementById("profileEmail").textContent = u.email || "—";
+  document.getElementById("profilePhone").textContent = u.phone || "—";
+  document.getElementById("profileSkill").textContent = u.skill || "—";
+  document.getElementById("profileStart").textContent = fmtDate(u.startDate);
+
+  updateStats(); renderTasks(); renderVideos(); renderResources();
+  populateDoubtDropdown(); renderDoubtsHistory(); renderCertificate(); renderNextTask();
+}
+
+function updateStats() {
+  var d = currentDomainData;
+  var tt = d.tasks.length, dt = d.tasks.filter(function(t){return completedTasks[t.id]}).length;
+  var tv = d.videos.length, dv = d.videos.filter(function(v){return watchedVideos[v.id]}).length;
+  var tp = tt ? Math.round(dt/tt*100) : 0, vp = tv ? Math.round(dv/tv*100) : 0;
+  var op = Math.round((tp+vp)/2);
+
+  document.getElementById("statTasks").textContent = dt+"/"+tt;
+  document.getElementById("statVideos").textContent = dv+"/"+tv;
+  document.getElementById("statProgress").textContent = op+"%";
+  document.getElementById("statCert").textContent = op>=100 ? "Ready!" : (100-op)+"% left";
+  document.getElementById("statTaskStatus").textContent = dt===tt ? "Done" : (tt-dt)+" left";
+  document.getElementById("progressText").textContent = op+"% Complete";
+  document.getElementById("taskBadge").textContent = tt-dt;
+
+  document.getElementById("progressTaskPct").textContent = tp+"%";
+  document.getElementById("progressTaskBar").style.width = tp+"%";
+  document.getElementById("progressVideoPct").textContent = vp+"%";
+  document.getElementById("progressVideoBar").style.width = vp+"%";
+  document.getElementById("progressOverallPct").textContent = op+"%";
+  document.getElementById("progressOverallBar").style.width = op+"%";
+
+  document.getElementById("tasksCompletedCount").textContent = dt+" of "+tt+" completed";
+  document.getElementById("videosWatchedCount").textContent = dv+" of "+tv+" watched";
+}
+
+
+// =============================================================
+//  ✅ TASKS
+// =============================================================
+function renderTasks() {
+  var c = document.getElementById("tasksList"), d = currentDomainData;
+  c.innerHTML = d.tasks.map(function(t, i) {
+    var done = !!completedTasks[t.id];
+    var dc = t.difficulty==="Easy"?"text-green-400 bg-green-500/10":t.difficulty==="Medium"?"text-amber-400 bg-amber-500/10":"text-red-400 bg-red-500/10";
+    var tc = t.type==="Report"?"text-purple-400 bg-purple-500/10":t.type==="Setup"?"text-blue-400 bg-blue-500/10":t.type==="Research"?"text-cyan-400 bg-cyan-500/10":t.type==="Documentation"?"text-indigo-400 bg-indigo-500/10":"text-cDark-300 bg-cDark-700/50";
+    return '<div class="card-hover bg-cDark-800/60 neon-border rounded-xl p-5 backdrop-blur-sm '+(done?'opacity-50':'')+'"><div class="flex items-start gap-4"><button onclick="toggleTask(\''+t.id+'\')" class="task-check mt-0.5 w-6 h-6 rounded-lg border-2 '+(done?'bg-neon-500 border-neon-500':'border-cDark-600 hover:border-neon-500/50')+' flex items-center justify-center flex-shrink-0 transition-all"><svg class="w-3.5 h-3.5 text-cDark-950 '+(done?'opacity-100':'opacity-0')+'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></button><div class="flex-1 min-w-0"><div class="flex flex-wrap items-center gap-2 mb-1.5"><h4 class="text-sm font-semibold text-white '+(done?'line-through':'')+'">'+t.title+'</h4><span class="text-[10px] font-semibold px-2 py-0.5 rounded-full '+dc+'">'+t.difficulty+'</span><span class="text-[10px] font-medium px-2 py-0.5 rounded-full '+tc+'">'+t.type+'</span></div><p class="text-xs text-cDark-400 leading-relaxed mb-3">'+t.desc+'</p><div class="flex items-center gap-3"><span class="text-[10px] text-cDark-500">Task '+(i+1)+' of '+d.tasks.length+'</span><button onclick="openTaskModal(\''+t.id+'\')" class="text-[10px] font-medium text-neon-400 hover:text-neon-300 transition-colors">View Details →</button></div></div></div></div>';
+  }).join("");
+}
+
+function toggleTask(id) {
+  completedTasks[id] = !completedTasks[id];
+  if (!completedTasks[id]) delete completedTasks[id];
+  localStorage.setItem(_storageKey("tasks"), JSON.stringify(completedTasks));
+  renderTasks(); updateStats(); renderNextTask(); renderCertificate();
+  showToast(completedTasks[id] ? "✅ Task completed!" : "Task unmarked");
+}
+
+
+// =============================================================
+//  🎬 VIDEOS
+// =============================================================
+function renderVideos() {
+  var c = document.getElementById("videosList"), d = currentDomainData;
+  c.innerHTML = d.videos.map(function(v, i) {
+    var w = !!watchedVideos[v.id];
+    return '<div class="video-card card-hover bg-cDark-800/60 neon-border rounded-xl overflow-hidden cursor-pointer backdrop-blur-sm '+(w?'opacity-50':'')+'" onclick="openVideoModal(\''+v.id+'\')"><div class="relative aspect-video overflow-hidden"><img src="'+v.thumb+'" alt="'+v.title+'" class="w-full h-full object-cover" loading="lazy"><div class="absolute inset-0 bg-gradient-to-t from-cDark-950/80 via-transparent to-transparent"></div>'+(w?'<div class="absolute top-3 right-3 w-7 h-7 rounded-full bg-neon-500 flex items-center justify-center neon-glow-sm"><svg class="w-4 h-4 text-cDark-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg></div>':'<div class="absolute inset-0 flex items-center justify-center"><div class="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20"><i data-lucide="play" class="w-5 h-5 text-white ml-0.5"></i></div></div>')+'<div class="absolute bottom-3 left-3"><span class="text-[10px] font-medium px-2 py-0.5 rounded-full bg-cDark-950/70 text-cDark-200">'+v.duration+'</span></div></div><div class="p-4"><h4 class="text-sm font-semibold text-white mb-1 '+(w?'line-through':'')+'">'+v.title+'</h4><p class="text-xs text-cDark-400 line-clamp-2">'+v.desc+'</p><div class="mt-3 flex items-center justify-between"><span class="text-[10px] text-cDark-500">'+(i+1)+'/'+d.videos.length+'</span>'+(w?'<span class="text-[10px] text-neon-400 font-medium">Watched</span>':'<span class="text-[10px] text-cDark-400">Click to watch</span>')+'</div></div></div>';
+  }).join("");
+  lucide.createIcons();
+}
+
+function markVideoWatched(id) {
+  watchedVideos[id] = true;
+  localStorage.setItem(_storageKey("videos"), JSON.stringify(watchedVideos));
+  renderVideos(); updateStats(); renderCertificate();
+  showToast("🎬 Marked as watched!");
+}
+
+
+// =============================================================
+//  📁 RESOURCES
+// =============================================================
+function renderResources() {
+  var c = document.getElementById("resourcesList"), d = currentDomainData;
+  c.innerHTML = d.resources.map(function(r) {
+    return '<div class="card-hover bg-cDark-800/60 neon-border rounded-xl p-4 flex items-center gap-4 backdrop-blur-sm"><div class="w-10 h-10 rounded-lg neon-bg flex items-center justify-center flex-shrink-0"><i data-lucide="'+r.icon+'" class="w-5 h-5 text-neon-400"></i></div><div class="flex-1 min-w-0"><h4 class="text-sm font-medium text-white truncate">'+r.name+'</h4><p class="text-xs text-cDark-400">'+r.type+' • '+r.size+'</p></div><button onclick="showToast(\'Download from your GS script endpoint\')" class="px-3 py-1.5 rounded-lg bg-cDark-700/50 hover:bg-cDark-700 text-xs font-medium text-cDark-300 hover:text-neon-400 transition-all">'+(r.type==="Link"?"Open":"Get")+'</button></div>';
+  }).join("");
+  lucide.createIcons();
+}
+
+
+// =============================================================
+//  🏆 CERTIFICATE
+// =============================================================
+function renderCertificate() {
+  var c = document.getElementById("certContent"), d = currentDomainData, u = currentUser;
+  var tt=d.tasks.length, dt=d.tasks.filter(function(t){return completedTasks[t.id]}).length;
+  var tv=d.videos.length, dv=d.videos.filter(function(v){return watchedVideos[v.id]}).length;
+  var tp=tt?Math.round(dt/tt*100):0, vp=tv?Math.round(dv/tv*100):0;
+  var op=Math.round((tp+vp)/2), ok=op>=100;
+
+  c.innerHTML = '<div class="max-w-2xl mx-auto"><div class="relative bg-cDark-800/60 neon-border rounded-2xl overflow-hidden backdrop-blur-sm '+(ok?'neon-glow-strong':'')+'"><div class="h-2 '+(ok?'bg-gradient-to-r from-neon-600 via-neon-400 to-neon-600':'bg-cDark-700')+'"></div><div class="p-8 sm:p-12 text-center relative">'+(!ok?'<div class="absolute inset-0 bg-cDark-950/60 backdrop-blur-sm z-10 rounded-b-2xl"></div>':'')+'<div class="relative '+(!ok?'blur-sm pointer-events-none':'')+'"><div class="w-16 h-16 neon-bg rounded-2xl flex items-center justify-center mx-auto mb-6 neon-glow-sm"><i data-lucide="award" class="w-8 h-8 text-neon-400"></i></div><p class="text-xs text-cDark-400 tracking-[0.2em] uppercase mb-2">Certificate of Completion</p><h3 class="text-2xl font-bold text-white mb-1">Cyber Rakshak</h3><p class="text-sm text-neon-400 font-medium mb-6">'+d.label+'</p><div class="w-20 h-px bg-gradient-to-r from-transparent via-neon-500/30 to-transparent mx-auto mb-6"></div><p class="text-lg font-semibold text-white mb-1">'+u.name+'</p><p class="text-xs text-cDark-400 mb-4">'+(u.email||"")+'</p><p class="text-xs text-cDark-400">Successfully completed the 8-week professional internship program</p><p class="text-xs text-cDark-400 mt-1">Start: '+fmtDate(u.startDate)+'</p><div class="flex justify-center gap-8 mt-8 pt-6 border-t border-cDark-700/50"><div class="text-center"><p class="text-[10px] text-cDark-500">Completion Date</p><p class="text-sm text-cDark-200 font-medium">'+(ok?fmtDate(new Date().toISOString()):'—')+'</p></div><div class="text-center"><p class="text-[10px] text-cDark-500">Domain</p><p class="text-sm text-cDark-200 font-medium">'+u.domain+'</p></div></div></div>'+(!ok?'<div class="absolute inset-0 z-20 flex flex-col items-center justify-center"><i data-lucide="lock" class="w-8 h-8 text-cDark-400 mb-3"></i><p class="text-sm font-semibold text-white mb-1">Certificate Locked</p><p class="text-xs text-cDark-400 text-center max-w-xs">Complete all tasks and videos to unlock</p><div class="mt-4 w-48"><div class="flex justify-between text-[10px] mb-1"><span class="text-cDark-400">Progress</span><span class="text-neon-400">'+op+'%</span></div><div class="h-2 bg-cDark-700 rounded-full overflow-hidden"><div class="h-full bg-neon-500 rounded-full" style="width:'+op+'%"></div></div></div></div>':'<div class="relative mt-6"><button onclick="showToast(\'Certificate download triggered\')" class="inline-flex items-center gap-2 px-6 py-2.5 bg-neon-500 hover:bg-neon-600 text-cDark-950 font-semibold text-sm rounded-lg transition-colors neon-glow-sm"><i data-lucide="download" class="w-4 h-4"></i> Download Certificate</button></div>')+'</div></div><div class="mt-6 bg-cDark-800/60 neon-border rounded-xl p-6 backdrop-blur-sm"><h3 class="text-sm font-semibold text-white mb-4">Requirements</h3><div class="space-y-3"><div class="flex items-center gap-3"><div class="w-6 h-6 rounded-full '+(dt===tt?'bg-neon-500 neon-glow-sm':'bg-cDark-700 border border-cDark-600')+' flex items-center justify-center flex-shrink-0">'+(dt===tt?'<svg class="w-3.5 h-3.5 text-cDark-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>':'')+'</div><span class="text-sm '+(dt===tt?'text-white':'text-cDark-400')+'">Complete all '+tt+' tasks</span><span class="ml-auto text-xs '+(dt===tt?'text-neon-400':'text-cDark-500')+'">'+dt+'/'+tt+'</span></div><div class="flex items-center gap-3"><div class="w-6 h-6 rounded-full '+(dv===tv?'bg-neon-500 neon-glow-sm':'bg-cDark-700 border border-cDark-600')+' flex items-center justify-center flex-shrink-0">'+(dv===tv?'<svg class="w-3.5 h-3.5 text-cDark-950" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>':'')+'</div><span class="text-sm '+(dv===tv?'text-white':'text-cDark-400')+'">Watch all '+tv+' videos</span><span class="ml-auto text-xs '+(dv===tv?'text-neon-400':'text-cDark-500')+'">'+dv+'/'+tv+'</span></div></div></div></div>';
+  lucide.createIcons();
+}
+
+
+// =============================================================
+//  📋 NEXT TASK
+// =============================================================
+function renderNextTask() {
+  var c = document.getElementById("nextTaskCard");
+  var next = currentDomainData.tasks.find(function(t){return !completedTasks[t.id]});
+  if (next) {
+    var dc = next.difficulty==="Easy"?"text-green-400":next.difficulty==="Medium"?"text-amber-400":"text-red-400";
+    c.innerHTML = '<div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg neon-bg flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="arrow-right" class="w-4 h-4 text-neon-400"></i></div><div><p class="text-sm font-medium text-white">'+next.title+'</p><p class="text-xs text-cDark-400 mt-0.5">'+next.desc.substring(0,80)+'...</p><div class="flex items-center gap-2 mt-2"><span class="text-[10px] font-semibold '+dc+'">'+next.difficulty+'</span><span class="text-[10px] text-cDark-500">•</span><span class="text-[10px] text-cDark-400">'+next.type+'</span></div></div></div><button onclick="switchSection(\'tasks\',document.querySelector(\'[data-section=tasks]\'))" class="w-full mt-4 py-2 rounded-lg bg-cDark-700/50 hover:bg-cDark-700 text-xs font-medium text-neon-400 transition-colors neon-border-hover border border-transparent">Go to Tasks →</button>';
+  } else {
+    c.innerHTML = '<div class="text-center py-4"><i data-lucide="party-popper" class="w-8 h-8 text-neon-400 mx-auto mb-2"></i><p class="text-sm font-medium text-white">All tasks done!</p><p class="text-xs text-cDark-400">Check your certificate</p></div>';
+  }
+  lucide.createIcons();
+}
+
+
+// =============================================================
+//  ❓ DOUBTS
+// =============================================================
+function populateDoubtDropdown() {
+  var s = document.getElementById("doubtRelated"), d = currentDomainData;
+  s.innerHTML = '<option value="">General</option>';
+  d.tasks.forEach(function(t){ s.innerHTML += '<option value="task:'+t.id+'">Task: '+t.title+'</option>'; });
+  d.videos.forEach(function(v){ s.innerHTML += '<option value="video:'+v.id+'">Video: '+v.title+'</option>'; });
+}
+
+function submitDoubt(e) {
+  e.preventDefault();
+  submittedDoubts.unshift({ id:Date.now(), subject:document.getElementById("doubtSubject").value, related:document.getElementById("doubtRelated").value, message:document.getElementById("doubtMessage").value, date:new Date().toISOString(), status:"pending" });
+  localStorage.setItem(_storageKey("doubts"), JSON.stringify(submittedDoubts));
+  renderDoubtsHistory(); e.target.reset(); showToast("📝 Doubt submitted!");
+}
+
+function renderDoubtsHistory() {
+  var c = document.getElementById("doubtsHistory");
+  if (!submittedDoubts.length) { c.innerHTML = '<p class="text-cDark-500 text-sm text-center py-4">No doubts raised yet</p>'; return; }
+  c.innerHTML = submittedDoubts.map(function(d) {
+    var sc = d.status==="pending"?"text-amber-400 bg-amber-500/10":"text-neon-400 bg-neon-500/10";
+    return '<div class="bg-cDark-700/50 rounded-lg p-4 neon-border"><div class="flex items-start justify-between gap-3"><div><h4 class="text-sm font-medium text-white">'+d.subject+'</h4><p class="text-xs text-cDark-400 mt-1">'+d.message.substring(0,100)+(d.message.length>100?'...':'')+'</p><p class="text-[10px] text-cDark-500 mt-2">'+fmtDate(d.date)+'</p></div><span class="text-[10px] font-semibold px-2 py-0.5 rounded-full '+sc+' flex-shrink-0">'+d.status+'</span></div></div>';
+  }).join("");
+}
+
+
+// =============================================================
+//  🔀 SECTIONS
+// =============================================================
+function switchSection(id, link) {
+  document.querySelectorAll('[id^="section-"]').forEach(function(s){ s.classList.add('hidden'); });
+  var t = document.getElementById('section-'+id);
+  if (t) { t.classList.remove('hidden'); t.classList.remove('fade-in'); void t.offsetWidth; t.classList.add('fade-in'); }
+  document.querySelectorAll('.sidebar-link').forEach(function(l){ l.classList.remove('active'); l.classList.add('text-cDark-300'); });
+  if (link) { link.classList.add('active'); link.classList.remove('text-cDark-300'); }
+  var m = {overview:['Overview','Your internship dashboard'],profile:['My Profile','Your details'],tasks:['Tasks','Complete all tasks'],videos:['Learn','Watch curated videos'],certificate:['Certificate','Your completion certificate'],resources:['Materials','Downloadable resources'],doubts:['Raise Doubt','Get help from mentors']};
+  var info = m[id]||['',''];
+  document.getElementById('sectionTitle').textContent = info[0];
+  document.getElementById('sectionSubtitle').textContent = info[1];
+  closeSidebar();
+}
+
+
+// =============================================================
+//  🪟 MODALS
+// =============================================================
+function openVideoModal(id) {
+  var v = currentDomainData.videos.find(function(x){return x.id===id}); if(!v) return;
+  var w = !!watchedVideos[v.id];
+  document.getElementById('modalTitle').textContent = v.title;
+  document.getElementById('modalVideoArea').innerHTML = '<div class="w-full h-full relative"><img src="'+v.thumb+'" class="w-full h-full object-cover rounded-xl"><div class="absolute inset-0 flex items-center justify-center"><div class="w-16 h-16 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20"><i data-lucide="play" class="w-7 h-7 text-white ml-1"></i></div></div></div>';
+  document.getElementById('modalDesc').innerHTML = '<p class="text-cDark-200 text-sm mb-3">'+v.desc+'</p><p class="text-cDark-500 text-xs mb-3">Duration: '+v.duration+'</p><button onclick="markVideoWatched(\''+v.id+'\');closeVideoModal();" class="inline-flex items-center gap-2 px-4 py-2 '+(w?'bg-cDark-700 text-cDark-400':'bg-neon-500 text-cDark-950 hover:bg-neon-600')+' font-semibold text-sm rounded-lg transition-colors"><i data-lucide="'+(w?'check':'check-circle')+'" class="w-4 h-4"></i>'+(w?'Already Watched':'Mark as Watched')+'</button>';
+  document.getElementById('videoModal').classList.add('show'); lucide.createIcons();
+}
+function closeVideoModal() { document.getElementById('videoModal').classList.remove('show'); }
+
+function openTaskModal(id) {
+  var t = currentDomainData.tasks.find(function(x){return x.id===id}); if(!t) return;
+  var done = !!completedTasks[t.id], idx = currentDomainData.tasks.indexOf(t);
+  var dc = t.difficulty==='Easy'?'text-green-400 bg-green-500/10':t.difficulty==='Medium'?'text-amber-400 bg-amber-500/10':'text-red-400 bg-red-500/10';
+  document.getElementById('taskModalTitle').textContent = t.title;
+  document.getElementById('taskModalBody').innerHTML = '<div class="space-y-4"><div class="flex flex-wrap gap-2"><span class="text-[10px] font-semibold px-2.5 py-1 rounded-full '+dc+'">'+t.difficulty+'</span><span class="text-[10px] font-medium px-2.5 py-1 rounded-full bg-cDark-700 text-cDark-300">'+t.type+'</span><span class="text-[10px] font-medium px-2.5 py-1 rounded-full bg-cDark-700 text-cDark-300">Task '+(idx+1)+'/'+currentDomainData.tasks.length+'</span></div><div class="bg-cDark-700/50 rounded-xl p-4 neon-border"><p class="text-[10px] text-cDark-500 tracking-widest uppercase mb-2">Description</p><p class="text-sm text-cDark-200 leading-relaxed">'+t.desc+'</p></div><div class="bg-cDark-700/50 rounded-xl p-4 neon-border"><p class="text-[10px] text-cDark-500 tracking-widest uppercase mb-2">Submission Guidelines</p><ul class="text-sm text-cDark-300 space-y-1.5"><li class="flex items-start gap-2"><span class="text-neon-400 mt-0.5">•</span>Complete the task as described</li><li class="flex items-start gap-2"><span class="text-neon-400 mt-0.5">•</span>Take screenshots as evidence</li><li class="flex items-start gap-2"><span class="text-neon-400 mt-0.5">•</span>'+(t.type==='Report'?'Prepare a professional report':'Document your process and findings')+'</li><li class="flex items-start gap-2"><span class="text-neon-400 mt-0.5">•</span>Submit via the Google Form shared by mentor</li></ul></div><button onclick="toggleTask(\''+t.id+'\');closeTaskModal();" class="w-full py-2.5 '+(done?'bg-cDark-700 text-cDark-400 hover:bg-cDark-600':'bg-neon-500 text-cDark-950 hover:bg-neon-600')+' font-semibold text-sm rounded-lg transition-colors">'+(done?'✓ Complete — Click to Undo':'Mark as Complete')+'</button></div>';
+  document.getElementById('taskModal').classList.add('show');
+}
+function closeTaskModal() { document.getElementById('taskModal').classList.remove('show'); }
+
+
+// =============================================================
+//  UTILS
+// =============================================================
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('mobileOverlay').classList.toggle('show'); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('mobileOverlay').classList.remove('show'); }
+function showToast(m) { var t=document.getElementById('toast'); t.textContent=m; t.classList.add('show'); setTimeout(function(){t.classList.remove('show')},2500); }
+function handleLogout() {
+  localStorage.removeItem('user');
+  if (_storageKey) {
+    localStorage.removeItem(_storageKey('tasks'));
+    localStorage.removeItem(_storageKey('videos'));
+    localStorage.removeItem(_storageKey('doubts'));
+  }
+  showToast('Logged out!');
+  setTimeout(function(){ window.location.href = 'login.html'; },1500);
+}
+function fmtDate(s) { if(!s||s==='—'||s==='undefined') return '—'; try { return new Date(s).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}); } catch(e) { return s; } }
+
+document.getElementById('videoModal').addEventListener('click', function(e){ if(e.target===this) closeVideoModal(); });
+document.getElementById('taskModal').addEventListener('click', function(e){ if(e.target===this) closeTaskModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape'){ closeVideoModal(); closeTaskModal(); } });
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>

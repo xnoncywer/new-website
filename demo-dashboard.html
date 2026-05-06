@@ -1,0 +1,216 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+</head>
+<body style="background:#050816; color:white; text-align:center; padding-top:100px;">
+
+<h1>Welcome</h1>
+<p id="userInfo"></p>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (!user) {
+  window.location.href = "login.html";
+}
+
+document.getElementById("userInfo").innerHTML = `
+Name: ${user.name} <br>
+Domain: ${user.domain} <br>
+Payment Status: ${user.payment}
+`;
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard | Cyber Rakshak</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Outfit',sans-serif;
+  background:#050816;
+  color:#fff;
+}
+
+.container {
+  padding:20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+.card {
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(0,255,255,0.2);
+  border-radius:12px;
+  padding:20px;
+  margin-bottom:20px;
+}
+
+h2 { color:#00e6ff; }
+
+.progress-bar {
+  height:10px;
+  background:#111;
+  border-radius:10px;
+  overflow:hidden;
+}
+.progress-fill {
+  height:100%;
+  background:#00e6ff;
+  width:0%;
+}
+
+.btn {
+  padding:10px 15px;
+  background:#00e6ff;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  color:#000;
+  font-weight:bold;
+}
+.locked {
+  background:#444;
+  cursor:not-allowed;
+}
+
+iframe {
+  width:100%;
+  height:200px;
+  border:none;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <h2 id="welcome"></h2>
+
+  <!-- Progress -->
+  <div class="card">
+    <h3>📊 Progress</h3>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- Countdown -->
+  <div class="card">
+    <h3>📅 Internship Countdown</h3>
+    <p id="countdown"></p>
+  </div>
+
+  <!-- Tasks -->
+  <div class="card">
+    <h3>📚 Tasks</h3>
+    <ul id="tasks"></ul>
+  </div>
+
+  <!-- Videos -->
+  <div class="card">
+    <h3>🎥 Learning Videos</h3>
+    <div id="videos"></div>
+  </div>
+
+  <!-- Ebooks -->
+  <div class="card">
+    <h3>📘 E-Books</h3>
+    <ul id="ebooks"></ul>
+  </div>
+
+  <!-- Certificate -->
+  <div class="card">
+    <h3>🏆 Certificate</h3>
+    <button id="certBtn" class="btn locked">Locked (Complete 30 Days)</button>
+  </div>
+
+</div>
+
+<script>
+const user = JSON.parse(localStorage.getItem("user"));
+
+if (!user) {
+  window.location.href = "login.html";
+}
+
+// ✅ Show user
+document.getElementById("welcome").innerText =
+  "Welcome " + user.name + " (" + user.domain + ")";
+
+// 🔥 DATA SYSTEM (EDIT THIS ONLY)
+const data = {
+  "Full Stack Development": {
+    tasks: ["HTML Basics", "CSS Flexbox", "JavaScript DOM", "React Basics"],
+    videos: [
+      "https://www.youtube.com/embed/UB1O30fR-EE",
+      "https://www.youtube.com/embed/W6NZfCO5SIk"
+    ],
+    ebooks: ["https://example.com/html.pdf"]
+  },
+
+  "Cybersecurity Internship": {
+    tasks: ["Linux Basics", "Networking", "Nmap", "OWASP Top 10"],
+    videos: [
+      "https://www.youtube.com/embed/3Kq1MIfTWCE"
+    ],
+    ebooks: ["https://example.com/cyber.pdf"]
+  }
+};
+
+const userData = data[user.domain];
+
+// 🔥 TASKS
+document.getElementById("tasks").innerHTML =
+  userData.tasks.map(t => `<li>${t}</li>`).join("");
+
+// 🔥 VIDEOS
+document.getElementById("videos").innerHTML =
+  userData.videos.map(v => `<iframe src="${v}"></iframe>`).join("");
+
+// 🔥 EBOOKS
+document.getElementById("ebooks").innerHTML =
+  userData.ebooks.map(e => `<li><a href="${e}" target="_blank">Download</a></li>`).join("");
+
+// 🔥 PROGRESS (simple demo)
+let progress = 25;
+document.getElementById("progressFill").style.width = progress + "%";
+
+// 🔥 COUNTDOWN (30 days)
+if (user.startDate) {
+  const start = new Date(user.startDate);
+  const now = new Date();
+  const diff = Math.floor((now - start) / (1000*60*60*24));
+
+  const remaining = 30 - diff;
+
+  document.getElementById("countdown").innerText =
+    remaining > 0 ? remaining + " days remaining" : "Completed";
+
+  // 🔥 CERTIFICATE UNLOCK
+  if (remaining <= 0) {
+    const btn = document.getElementById("certBtn");
+    btn.classList.remove("locked");
+    btn.innerText = "Download Certificate";
+    btn.onclick = () => alert("Generate certificate PDF here");
+  }
+} else {
+  document.getElementById("countdown").innerText = "Start date not set";
+}
+</script>
+
+</body>
+</html>
