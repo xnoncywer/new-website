@@ -128,10 +128,9 @@ function renderInternshipCards() {
                         `).join('')}
                     </div>
 
-<a href="apply.html?course=${encodeURIComponent(item.title)}"
-   class="internship-apply-btn w-100">
-   Join Now
-</a>
+                    <a href="${item.link}" target="_blank" class="internship-apply-btn">
+                        <i class="fab fa-whatsapp"></i> Apply Now
+                    </a>
                 </div>
 
             </div>
