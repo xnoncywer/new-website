@@ -2868,15 +2868,21 @@ You help with: penetration testing, network security, web security, digital fore
     }
   });
 
-  // Close chat when clicking outside (optional — remove if you don't want this)
+  // Close chat when clicking outside
+  var justToggled = false;
+  document.getElementById('ai-float-btn').addEventListener('click', function() {
+    justToggled = true;
+    setTimeout(function() { justToggled = false; }, 300);
+  });
+
   document.addEventListener('click', function(e) {
+    if (justToggled) return;
     var overlay = document.getElementById('ai-chat-overlay');
     var btn = document.getElementById('ai-float-btn');
     if (chatOpen && !overlay.contains(e.target) && !btn.contains(e.target)) {
       toggleAIChat();
     }
   });
-
 })();
 </script>
 
