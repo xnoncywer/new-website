@@ -128,9 +128,9 @@ function renderInternshipCards() {
                         `).join('')}
                     </div>
 
-                    <a href="${item.link}" target="_blank" class="internship-apply-btn">
-                        <i class="fab fa-whatsapp"></i> Apply Now
-                    </a>
+<a href="https://forms.gle/msTyHYuXtMW5h22q6" target="_blank" class="internship-apply-btn">
+    🚀 Join Now
+</a>
                 </div>
 
             </div>
