@@ -2883,7 +2883,7 @@ You help with: penetration testing, network security, web security, digital fore
         // Non-retryable or max retries reached
         hideAITyping();
         finishRequest();
-        appendAIMsg("⚠️ API Error: " + (data.error.message || "Unknown error"), false);
+        appendAIMsg("⚠️ Error: " + (data.error.message || "Unknown error"), false);
         chatHistory.pop();
         processQueue();
         return;
