@@ -1,27 +1,27 @@
 const studentsPlaced = [
     {
         name: "SALONI TAILOR",
-        role: "STUDENT",
+        role: "INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-4.png",
         
-        companyName: "CYBERRAKSHAK"
+        companyName: "JMRC JAIPUR"
     },
     {
-        name: "DANEIL BLOSSOM",
-        role: "STUDENT",
+        name: "DANIEL BLESSON",
+        role: "STUDENT AMBASSADOR",
         ctc: "",
         image: "assets/images/Students-placed/st-5.png",
         
-        companyName: "CYBERRAKSHAK"
+        companyName: "KEIT ANDHRA PRADESH"
     },
     {
-        name: "SANKET",
-        role: "CTO",
+        name: "SANKET SHEWALA",
+        role: "AI DEVELOPMENT ENGINEER",
         ctc: "",
         image: "assets/images/Students-placed/st-6.png",
         
-        companyName: "TRINET LAYER SECURITY" // Assuming this is the company name based on the logo
+        companyName: "TRINET LAYER SECURITY (PUNE)" // Assuming this is the company name based on the logo
     },
     {
         name: "AMAN MISHRA",
@@ -29,7 +29,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-7.png",
         
-        companyName: "Jugadu Aman Media" // Assuming this is the company name based on the logo
+        companyName: "Jugadu Aman Media (MP)" // Assuming this is the company name based on the logo
     },
 
         {
@@ -38,20 +38,20 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-10.png",
         
-        companyName: "CYBER SHAKTI FOUNDATION" // Assuming this is the company name based on the logo
+        companyName: "CYBER SHAKTI FOUNDATION (HYDERABAD)" // Assuming this is the company name based on the logo
     },
 
-        {
+    {
         name: "KARAN BANSOD",
-        role: "INVESTIGATOR",
+        role: "CYBER INVESTIGATOR",
         ctc: "",
         image: "assets/images/Students-placed/st-15.png",
         
-        companyName: "TSCRB TELANGANA" // Assuming this is the company name based on the logo
+        companyName: "TCSB TELANGANA" // Assuming this is the company name based on the logo
     },
     {
         name: "PRIYA KUMARI",
-        role: "INVESTIGATOR",
+        role: "INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-8.png",
         
@@ -69,33 +69,33 @@ const studentsPlaced = [
 
     {
         name: "RAGHAV MAHESHWARI",
-        role: "",
+        role: "CYBER SECURITY SPECIALIST",
         ctc: "",
         image: "assets/images/Students-placed/st-17.png",
         
-        companyName: "" // Assuming this is the company name based on the logo
+        companyName: "TECHFORCE ACADEMY AUSTRALIA" // Assuming this is the company name based on the logo
     },
 
     {
         name: "VANSH TYAGI",
-        role: "",
+        role: "AI PRACTITIONER  (NEW DELHI)",
         ctc: "",
         image: "assets/images/Students-placed/st-24.png",
         
-        companyName: "" // Assuming this is the company name based on the logo
+        companyName: "AWS" // Assuming this is the company name based on the logo
     },
 
     {
         name: "YUNIT KUMAR PATLE",
-        role: "",
+        role: "INTERN ",
         ctc: "",
         image: "assets/images/Students-placed/st-27.png",
         
-        companyName: "" // Assuming this is the company name based on the logo
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
         {
         name: "ANAND KUMAR CHOUBEY",
-        role: "STUDENT",
+        role: "CYBER TRAINER",
         ctc: "",
         image: "assets/images/Students-placed/st-9.png",
         
@@ -105,118 +105,118 @@ const studentsPlaced = [
 
   {
         name: "CHAITANYA SHARMA",
-        role: "STUDENT",
+        role: "INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-11.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "RAJASTHAN POLICE" // Assuming this is the company name based on the logo
     },
 
     {
         name: "DEEPIKA SHARMA",
-        role: "STUDENT",
+        role: "CYBER PRACTITIONER",
         ctc: "",
         image: "assets/images/Students-placed/st-12.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "THE ASSAM ROYALS GLOBAL UNIVERSITY" // Assuming this is the company name based on the logo
     },
 
     {
         name: "GURMEHAR SINGH",
-        role: "STUDENT",
+        role: "INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-13.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "RAJASTHAN POLICE" // Assuming this is the company name based on the logo
     },
 
     {
         name: "HIMANSHU SHARMA",
-        role: "STUDENT",
+        role: "RESEARCH INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-14.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "RAJASTHAN POLICE" // Assuming this is the company name based on the logo
     },
 
     {
         name: "PIYUSH PAREEK",
-        role: "STUDENT",
+        role: "CYBER INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-28.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "HACKTIFY CYBERSECURITY" // Assuming this is the company name based on the logo
     },
 
     {
-        name: "RAVI KUMAR",
-        role: "STUDENT",
+        name: "RAVI CHAUDHARY",
+        role: "RESEARCH INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-18.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "RAJASTHAN POLICE" // Assuming this is the company name based on the logo
     },
 
     {
         name: "ROHIT SONKAR",
-        role: "STUDENT",
+        role: "INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-19.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "CSIB" // Assuming this is the company name based on the logo
     },
 
     {
         name: "ROOP SARKAR",
-        role: "STUDENT",
+        role: "PROJECT LEAD",
         ctc: "",
         image: "assets/images/Students-placed/st-20.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "INTEGRATED CYBER NEXUS (ICN)" // Assuming this is the company name based on the logo
     },
 
     {
         name: "SHUBHAM SAXENA",
-        role: "STUDENT",
+        role: "SOFTWARE DEVELOPER",
         ctc: "",
         image: "assets/images/Students-placed/st-21.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "ARCTIC INNOVAGE PVT LTD" // Assuming this is the company name based on the logo
     },
     {
         name: "SWAPNIL DHIMAN",
-        role: "STUDENT",
+        role: "INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-22.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "RAJASTHAN POLICE" // Assuming this is the company name based on the logo
     },
 
     {
-        name: "VAISHNAVI",
-        role: "STUDENT",
+        name: "VAISHNAVI NICHALE",
+        role: "DIGITAL FORENSIC ANALYST",
         ctc: "",
         image: "assets/images/Students-placed/st-23.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "ECS MAHARASHTRA" // Assuming this is the company name based on the logo
     },
 
     {
         name: "VIVAN KUMAR",
-        role: "STUDENT",
+        role: "EXPLOIT DEVELOPMENT INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-25.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "COMPANY (CONFIDENTIAL" // Assuming this is the company name based on the logo
     },
 
     {
         name: "YATHARTH UPADHYAY",
-        role: "STUDENT",
+        role: "RESEARCH INTERN",
         ctc: "",
         image: "assets/images/Students-placed/st-26.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "RAJASTHAN POLICE" // Assuming this is the company name based on the logo
     },
 ];
 
