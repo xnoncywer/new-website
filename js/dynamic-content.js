@@ -319,7 +319,7 @@ function initDynamicContent() {
                 <div class="placed-info">
                     <h5>${student.name}</h5>
                     <p class="role">${student.role}</p>
-                    <p class="ctc">${student.ctc}</p>
+                    <p class="ctc">${student.companyName}</p>
                 </div>
             </div>
         `;
