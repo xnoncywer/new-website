@@ -1,36 +1,223 @@
 const studentsPlaced = [
     {
-        name: "MARK CLIFARD",
-        role: "CYBER SECURITY ANALYST",
+        name: "SALONI TAILOR",
+        role: "STUDENT",
         ctc: "",
-        image: "assets/images/Students-placed/st-1.png",
+        image: "assets/images/Students-placed/st-4.png",
         companyLogo: "https://upload.wikimedia.org/wikipedia/commons/2/23/Zoho_Corporation_logo.svg",
-        companyName: "Zoho"
+        companyName: "CYBERRAKSHAK"
     },
     {
-        name: "MAGESH RAO",
-        role: "ETHICAL HACKER",
+        name: "DANEIL BLOSSOM",
+        role: "STUDENT",
         ctc: "",
-        image: "assets/images/Students-placed/st-2.png",
+        image: "assets/images/Students-placed/st-5.png",
         companyLogo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-        companyName: "Google"
+        companyName: "CYBERRAKSHAK"
     },
     {
-        name: "PREM KUMAR",
-        role: "VAPT SPECIALIST",
+        name: "SANKET",
+        role: "CTO",
         ctc: "",
-        image: "assets/images/Students-placed/st-3.png",
+        image: "assets/images/Students-placed/st-6.png",
         companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
-        companyName: "HCL"
+        companyName: "TRINET LAYER SECURITY" // Assuming this is the company name based on the logo
     },
     {
-        name: "VISHAL",
-        role: "DIGITAL FORENSIC EXPERT",
+        name: "AMAN MISHRA",
+        role: "CEO & FOUNDER",
         ctc: "",
-        image: "assets/images/Students-placed/st-1.png",
+        image: "assets/images/Students-placed/st-7.png",
         companyLogo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
-        companyName: "Infosys"
-    }
+        companyName: "Jugadu Aman Media" // Assuming this is the company name based on the logo
+    },
+
+        {
+        name: "ANMOL KUMAR",
+        role: "CEO & FOUNDER",
+        ctc: "",
+        image: "assets/images/Students-placed/st-8.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBER SHAKTI FOUNDATION" // Assuming this is the company name based on the logo
+    },
+
+        {
+        name: "KARAN BANSOD",
+        role: "INVESTIGATOR",
+        ctc: "",
+        image: "assets/images/Students-placed/st-9.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "TSCRB TELANGANA" // Assuming this is the company name based on the logo
+    },
+    {
+        name: "PRIYA KUMARI",
+        role: "INVESTIGATOR",
+        ctc: "",
+        image: "assets/images/Students-placed/st-10.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CID RANCHI" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "PRIYANKA JAKHAR",
+        role: "SECURITY ENGINEER",
+        ctc: "",
+        image: "assets/images/Students-placed/st-11.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "TECH MAHINDRA" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "RAGHAV MAHESHWARI",
+        role: "",
+        ctc: "",
+        image: "assets/images/Students-placed/st-12.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "VANSH TYAGI",
+        role: "",
+        ctc: "",
+        image: "assets/images/Students-placed/st-13.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "YUNIT KUMAR PATLEY",
+        role: "",
+        ctc: "",
+        image: "assets/images/Students-placed/st-14.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "" // Assuming this is the company name based on the logo
+    },
+        {
+        name: "ANAND KUMAR CHOUBEY",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-15.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+
+  {
+        name: "CHAITANYA SHARMA",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-16.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "DEEPIKA SHARMA",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-17.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "GURMEHAR SINGH",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-18.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "HIMANSHU SHARMA",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-19.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "PIYUSH PAREEK",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-20.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "RAVI KUMAR",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-21.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "ROHIT SONAWALE",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-22.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "ROOP SARKAR",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-23.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "SHUBHAM SAXENA",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-24.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+    {
+        name: "SWAPNIL DHIMAN",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-25.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "VAISHNAVI",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-26.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "VIVAN KUMAR",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-27.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
+
+    {
+        name: "YATHARTH UPADHYAY",
+        role: "STUDENT",
+        ctc: "",
+        image: "assets/images/Students-placed/st-28.png",
+        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+    },
 ];
 
 const studentStories = [
