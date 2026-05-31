@@ -256,8 +256,8 @@ const studentStories = [
 const galleryData = {
     workshop: [
         { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750328518670.webp", desc: "Interactive Cyber Awareness Drive at College Campus" },
-        { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750327442370.webp", desc: "Expert Hands-on Ethical Hacking Workshop" },
-        { url: "assets/images/gallaery/9D3A3868_1750327592170.webp", desc: "Public Seminar on Digital Security and Privacy" },
+        { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750327442370.webp", desc: "In-house hands-on cyber investigation internship program" },
+        { url: "assets/images/gallaery/9D3A3868_1750327592170.webp", desc: "LAW Enforcement agency (police officers) Cyber Investigation Training program Lucknow" },
         { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750327745381.webp", desc: "Corporate Security Training & Awareness" }
     ],
     achievement: [
