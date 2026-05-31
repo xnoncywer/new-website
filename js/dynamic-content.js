@@ -4,7 +4,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-4.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/2/23/Zoho_Corporation_logo.svg",
+        
         companyName: "CYBERRAKSHAK"
     },
     {
@@ -12,7 +12,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-5.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+        
         companyName: "CYBERRAKSHAK"
     },
     {
@@ -20,7 +20,7 @@ const studentsPlaced = [
         role: "CTO",
         ctc: "",
         image: "assets/images/Students-placed/st-6.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "TRINET LAYER SECURITY" // Assuming this is the company name based on the logo
     },
     {
@@ -28,7 +28,7 @@ const studentsPlaced = [
         role: "CEO & FOUNDER",
         ctc: "",
         image: "assets/images/Students-placed/st-7.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg",
+        
         companyName: "Jugadu Aman Media" // Assuming this is the company name based on the logo
     },
 
@@ -37,7 +37,7 @@ const studentsPlaced = [
         role: "CEO & FOUNDER",
         ctc: "",
         image: "assets/images/Students-placed/st-10.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBER SHAKTI FOUNDATION" // Assuming this is the company name based on the logo
     },
 
@@ -46,7 +46,7 @@ const studentsPlaced = [
         role: "INVESTIGATOR",
         ctc: "",
         image: "assets/images/Students-placed/st-15.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "TSCRB TELANGANA" // Assuming this is the company name based on the logo
     },
     {
@@ -54,7 +54,7 @@ const studentsPlaced = [
         role: "INVESTIGATOR",
         ctc: "",
         image: "assets/images/Students-placed/st-8.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CID RANCHI" // Assuming this is the company name based on the logo
     },
 
@@ -63,7 +63,7 @@ const studentsPlaced = [
         role: "SECURITY ENGINEER",
         ctc: "",
         image: "assets/images/Students-placed/st-16.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "TECH MAHINDRA" // Assuming this is the company name based on the logo
     },
 
@@ -72,7 +72,7 @@ const studentsPlaced = [
         role: "",
         ctc: "",
         image: "assets/images/Students-placed/st-17.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "" // Assuming this is the company name based on the logo
     },
 
@@ -81,7 +81,7 @@ const studentsPlaced = [
         role: "",
         ctc: "",
         image: "assets/images/Students-placed/st-24.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "" // Assuming this is the company name based on the logo
     },
 
@@ -90,7 +90,7 @@ const studentsPlaced = [
         role: "",
         ctc: "",
         image: "assets/images/Students-placed/st-27.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "" // Assuming this is the company name based on the logo
     },
         {
@@ -98,7 +98,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-9.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -108,7 +108,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-11.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -117,7 +117,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-12.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -126,7 +126,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-13.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -135,7 +135,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-14.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -144,7 +144,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-28.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -153,7 +153,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-18.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -162,7 +162,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-19.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -171,7 +171,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-20.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -180,7 +180,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-21.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
     {
@@ -188,7 +188,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-22.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -197,7 +197,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-23.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -206,7 +206,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-25.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 
@@ -215,7 +215,7 @@ const studentsPlaced = [
         role: "STUDENT",
         ctc: "",
         image: "assets/images/Students-placed/st-26.png",
-        companyLogo: "https://upload.wikimedia.org/wikipedia/commons/d/de/HCL_Technologies_logo.svg",
+        
         companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
     },
 ];
@@ -314,9 +314,7 @@ function initDynamicContent() {
                 <div class="placed-photo-wrapper">
                     <div class="photo-bg-circle"></div>
                     <img src="${student.image}" class="student-photo" alt="${student.name}" loading="lazy">
-                    <div class="company-logo-badge">
-                        <img src="${student.companyLogo}" alt="${student.companyName}" loading="lazy">
-                    </div>
+
                 </div>
                 <div class="placed-info">
                     <h5>${student.name}</h5>
