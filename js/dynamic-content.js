@@ -13,7 +13,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-5.png",
         
-        companyName: "KEIT ANDHRA PRADESH"
+        companyName: "KIET (ANDHRA PRADESH)"
     },
     {
         name: "SANKET SHEWALA",
@@ -38,7 +38,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-10.png",
         
-        companyName: "CYBER SHAKTI FOUNDATION (HYDERABAD)" // Assuming this is the company name based on the logo
+        companyName: "CYBER SHAKTI FDN (HYDERABAD)" // Assuming this is the company name based on the logo
     },
 
     {
@@ -47,7 +47,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-15.png",
         
-        companyName: "TCSB TELANGANA" // Assuming this is the company name based on the logo
+        companyName: "TCSB (TELANGANA)" // Assuming this is the company name based on the logo
     },
     {
         name: "PRIYA KUMARI",
@@ -55,7 +55,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-8.png",
         
-        companyName: "CID RANCHI" // Assuming this is the company name based on the logo
+        companyName: "CID (RANCHI)" // Assuming this is the company name based on the logo
     },
 
     {
@@ -73,16 +73,16 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-17.png",
         
-        companyName: "TECHFORCE ACADEMY AUSTRALIA" // Assuming this is the company name based on the logo
+        companyName: "TECHFORCE ACADEMY (AUSTRALIA)" // Assuming this is the company name based on the logo
     },
 
     {
         name: "VANSH TYAGI",
-        role: "AI PRACTITIONER  (NEW DELHI)",
+        role: "AI PRACTITIONER  ",
         ctc: "",
         image: "assets/images/Students-placed/st-24.png",
         
-        companyName: "AWS" // Assuming this is the company name based on the logo
+        companyName: "AWS (NEW DELHI)" // Assuming this is the company name based on the logo
     },
 
     {
@@ -91,7 +91,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-27.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "CYBER RAKSHAK " // Assuming this is the company name based on the logo
     },
         {
         name: "ANAND KUMAR CHOUBEY",
@@ -99,7 +99,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-9.png",
         
-        companyName: "CYBERRAKSHAK" // Assuming this is the company name based on the logo
+        companyName: "CYBER RAKSHAK" // Assuming this is the company name based on the logo
     },
 
 
@@ -118,7 +118,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-12.png",
         
-        companyName: "THE ASSAM ROYALS GLOBAL UNIVERSITY" // Assuming this is the company name based on the logo
+        companyName: "ARG UNIVERSITY (ASSAM)" // Assuming this is the company name based on the logo
     },
 
     {
@@ -141,7 +141,7 @@ const studentsPlaced = [
 
     {
         name: "PIYUSH PAREEK",
-        role: "CYBER INTERN",
+        role: "CYBER INTERN (NEPAL)",
         ctc: "",
         image: "assets/images/Students-placed/st-28.png",
         
@@ -159,7 +159,7 @@ const studentsPlaced = [
 
     {
         name: "ROHIT SONKAR",
-        role: "INTERN",
+        role: "INTERN (MUMBAI)",
         ctc: "",
         image: "assets/images/Students-placed/st-19.png",
         
@@ -172,7 +172,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-20.png",
         
-        companyName: "INTEGRATED CYBER NEXUS (ICN)" // Assuming this is the company name based on the logo
+        companyName: "ICN (WEST BENGAL)" // Assuming this is the company name based on the logo
     },
 
     {
@@ -198,7 +198,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-23.png",
         
-        companyName: "ECS MAHARASHTRA" // Assuming this is the company name based on the logo
+        companyName: "ECS (MUMBAI)" // Assuming this is the company name based on the logo
     },
 
     {
@@ -207,7 +207,7 @@ const studentsPlaced = [
         ctc: "",
         image: "assets/images/Students-placed/st-25.png",
         
-        companyName: "COMPANY (CONFIDENTIAL" // Assuming this is the company name based on the logo
+        companyName: "(CONFIDENTIAL)" // Assuming this is the company name based on the logo
     },
 
     {
