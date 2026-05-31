@@ -257,21 +257,21 @@ const galleryData = {
     workshop: [
         { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750328518670.webp", desc: "Interactive Cyber Awareness Drive at College Campus" },
         { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750327442370.webp", desc: "In-house hands-on cyber investigation internship program" },
-        { url: "assets/images/gallaery/9D3A3868_1750327592170.webp", desc: "LAW Enforcement agency (police officers) Cyber Investigation Training program Lucknow" },
-        { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750327745381.webp", desc: "Corporate Security Training & Awareness" }
+        { url: "assets/images/gallaery/9D3A3868_1750327592170.webp", desc: "Law Enforcement Agency (Police 0fficers) Cyber Investigation Training program (Lucknow)" },
+        { url: "assets/images/gallaery/WhatsAppImage20250619at3_1750327745381.webp", desc: "Award Recognition by IRS Officers, NDPS Department, NACIN (Andhra Pradesh)" }
     ],
     achievement: [
-        { url: "assets/images/achivement-img/16_20260213_134735_0015.png", desc: "Elite Cybersecurity Excellence Certificate" },
+        { url: "assets/images/achivement-img/16_20260213_134735_0015.png", desc: "Rajasthan Police Hackathon Team Of Cyberrakshak 2024" },
         { url: "assets/images/gallaery/Saloni_std.webp", desc: "Our Student Saloni got Bounty from doing Bug Bounty" },
-        { url: "assets/images/achivement-img/18_20260213_134735_0017.png", desc: "National Cyber Security Recognition Award" },
-        { url: "assets/images/achivement-img/21_20260213_134735_0020.png", desc: "100+ Successful Placements in Top MNCs" },
-        { url: "assets/images/achivement-img/22_20260213_134735_0021.png", desc: "Award for Best Training Institute in Rajasthan" }
+        { url: "assets/images/achivement-img/18_20260213_134735_0017.png", desc: "Cyber Awareness Training Program in VGU University (Jaipur)" },
+        { url: "assets/images/achivement-img/21_20260213_134735_0020.png", desc: "Got National Cyber Expert Award by IPS Professor Dr. GK Goswami (UPSIFS)" },
+        { url: "assets/images/achivement-img/22_20260213_134735_0021.png", desc: "FCRF Panel Discussion For Law Enforcement Agency (Lucknow)" }
     ],
     training: [
-        { url: "assets/images/gallaery/ter1_1750327151978.webp", desc: "Advanced Forensic Lab Setup & Training" },
-        { url: "assets/images/gallaery/1J5A2305_1750327247377.webp", desc: "Industrial Grade SOC Operations Training" },
-        { url: "assets/images/gallaery/9D3A3873_1750327622177.webp", desc: "Live Bug Hunting and VAPT Session" },
-        { url: "assets/images/gallaery/9D3A4001_1750327603420.webp", desc: "Real-world Network Infiltration Simulations" }
+        { url: "assets/images/gallaery/ter1_1750327151978.webp", desc: "Cyber Rakshak Training & Investigation Center Inauguration (Jaipur)" },
+        { url: "assets/images/gallaery/1J5A2305_1750327247377.webp", desc: "Cyber Rakshak Office Inauguration by ACP Sodala Yogesh Sir & ACP Narayan Sir (Jaipur)" },
+        { url: "assets/images/gallaery/9D3A3873_1750327622177.webp", desc: "Law Enforcement Lucknow Police Training Session" },
+        { url: "assets/images/gallaery/9D3A4001_1750327603420.webp", desc: "Got Awarded by IPS Professor Dr. GK Goswami Director (UPSIFS) in Lucknow" }
     ]
 };
 
