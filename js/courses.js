@@ -18,10 +18,10 @@ const coursesData = [
     },
     {
         id: 2,
-        title: "Advance Bug Hunting course",
+        title: "Police Investigation course",
         category: "ethical-hacking",
         image: "assets/images/courses/c-2.png",
-        duration: "6 Months",
+        duration: "3 Months",
         level: "Expert",
         link: "https://superprofile.bio/vp/681e0015d28af900137d24ef",
         // price: "₹15,000",
@@ -31,7 +31,7 @@ const coursesData = [
     },
     {
         id: 3,
-        title: "Digital Forensics",
+        title: "Digital Forensics Course",
         category: "cyber-crime",
         image: "assets/images/courses/c-3.png",
         duration: "",
@@ -44,7 +44,7 @@ const coursesData = [
     },
     {
         id: 4,
-        title: "Cyber Crime Investigation",
+        title: "Cyber Crime Investigation Course",
         category: "cyber-crime",
         image: "assets/images/courses/c-4.webp",
         duration: "2 Months",
@@ -60,7 +60,7 @@ const coursesData = [
     // Cyber Crime Courses
     {
         id: 5,
-        title: "Ethical Hacking Penetration Testing",
+        title: "Ethical Hacking Pentesting Course",
         category: "ethical-hacking",
         image: "assets/images/courses/c-5.png",
         duration: "6 Months",
@@ -73,7 +73,7 @@ const coursesData = [
     },
     {
         id: 6,
-        title: "Foundation SOC",
+        title: "Foundation SOC Course",
         category: "cyber-crime",
         image: "assets/images/courses/c-6.png",
         duration: "3 Months",
@@ -101,7 +101,7 @@ const coursesData = [
     // Digital Marketing Courses
     {
         id: 8,
-        title: "AI Powered Digital Marketing",
+        title: "AI Powered Digital Marketing Course",
         category: "digital-marketing",
         image: "assets/images/courses/c-8.png",
         duration: "3 Months",
